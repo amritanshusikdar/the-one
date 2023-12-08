@@ -20,7 +20,7 @@ Group1.nrofHosts = 1
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
 Group1.movementModel = MapRouteMovement
-Group1.routeFile = map_creation_scripts/map2.wkt
+Group1.routeFile = mod_mov_test_files/line.wkt
 Group1.routeType = 1
 Group1.router = PassiveRouter
 
@@ -34,7 +34,7 @@ Group2.router = PassiveRouter
 
 ## Map based movement -movement model specific settings
 MapBasedMovement.nrofMapFiles = 1
-MapBasedMovement.mapFile1 = map_creation_scripts/map2.wkt
+MapBasedMovement.mapFile1 = mod_mov_test_files/line.wkt
 
 # Reports
 Report.nrofReports = 1

@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4d81be6-c957-4ec3-9c01-fc2a8058a34e" name="Changes" comment="Updated .gitignore">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/DTNConsoleConnection.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ECLA.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/the-one.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_mov_test_files/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mod_mov_test_files/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +82,7 @@
     <configuration name="DTNSim" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="core.DTNSim" />
       <module name="the-one" />
-      <option name="PROGRAM_PARAMETERS" value="cmb_sample_settings/test.txt" />
+      <option name="PROGRAM_PARAMETERS" value="mod_mov_test_files/test.txt" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="core.*" />

@@ -1,0 +1,49 @@
+# Settings for movement and model testing
+
+Scenario.name = MyScenario
+Scenario.endTime = 6000
+Scenario.updateInterval = 0.1
+Scenario.simulateConnections = false
+Scenario.nrofHostGroups = 1
+MovementModel.worldSize = 1000,1000
+Events.nrof = 0
+#GUI.UnderlayImage.fileName = mod_mov_test_files/sample_background.PNG
+#GUI.UnderlayImage.offset = 64, 20
+#GUI.UnderlayImage.scale = 4.75
+#GUI.UnderlayImage.rotate = -0.015
+#GUI.EventLogPanel.nrofEvents = 100
+
+
+# Communication Interface
+myInterface.type = SimpleBroadcastInterface
+myInterface.transmitRange = 0
+myInterface.transmitSpeed = 0
+
+## Group Settings
+# Group 1
+Group1.groupID = x
+Group1.nrofHosts = 1
+Group1.nrofInterfaces = 1
+Group1.interface1 = myInterface
+Group1.movementModel = MapRouteMovement
+Group1.routeFile = mod_mov_test_files/g1.wkt
+Group1.routeType = 1
+Group1.router = PassiveRouter
+# Group1.waitTime = 100, 300 #this makes node to wait for given amount of secs in interval
+#Group1.startTime = 1000
+#Group1.endTime = 4000
+
+## Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 3
+MapBasedMovement.mapFile1 = mod_mov_test_files/sample_map.wkt
+MapBasedMovement.mapFile2 = mod_mov_test_files/origin.wkt
+MapBasedMovement.mapFile3 = mod_mov_test_files/end.wkt
+
+# Time-based Movement Actions
+#Group1.addMovementAction = changePath
+#changePath.startTime = 1000  # Change path at simulation time 300
+#changePath.endTime = 4000    # Continue the new path until simulation time 400
+#changePath.lineString = [(100, 200), (300, 400), (500, 600)]  # Specify the new path coordinates
+
+# Reports
+Report.nrofReports = 0

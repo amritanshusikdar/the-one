@@ -1,0 +1,29 @@
+# Simulation Settings
+simulation.seed = 12345
+simulation.endTime = 1000
+simulation.nodeDensity = 50
+simulation.areaWidth = 1000
+simulation.areaLength = 1000
+simulation.routingType = PROPHET
+
+# Node Settings
+node.MovementType = TimeBased
+node.initializationType = 2D
+node.mobilityModel = RandomWaypoint
+node.speed = 2
+node.pause = 0
+node.randomSeed = 42
+
+# Time-Based Behavior
+node.timeBasedBehavior = true
+node.startTime = 0
+node.endTime = 500
+
+# Group-Specific LINESTRING Mobility
+node.group1.mobilityModel = LINESTRING
+node.group1.mobilityData = (0,0, 500,500, 1000,0)  # Initial path for group1
+
+# Later in the simulation, change the path for group1
+node.group1.mobilityData = (0,0, 500,500, 0,1000)  # Updated path for group1 at time t
+node.group1.startTime = 501  # Adjust the time when the path change occurs
+node.group1.endTime = 1000  # Set the end time for the new path

@@ -2,7 +2,13 @@ package movement;
 
 import core.Coord;
 import core.Settings;
+import core.SettingsError;
+import input.WKTReader;
+import movement.map.MapRoute;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,29 +23,32 @@ public class ProhibitedPolygonRwp
 extends MovementModel {
 
   //==========================================================================//
-  // Settings
-  //==========================================================================//
-  /** {@code true} to confine nodes inside the polygon */
-  public static final String INVERT_SETTING = "rwpInvert";
-  public static final boolean INVERT_DEFAULT = false;
-  //==========================================================================//
-
-
-  //==========================================================================//
   // Instance vars
   //==========================================================================//
-  final List <Coord> polygon = Arrays.asList(
-      new Coord( 500, 250 ),
-      new Coord( 250, 500 ),
-      new Coord( 500, 750 ),
-      new Coord( 750, 500 ),
-      new Coord( 500, 250 )
+  List <Coord> polygon = Arrays.asList(
+          new Coord( 500, 250 ),
+          new Coord( 250, 500 ),
+          new Coord( 500, 750 ),
+          new Coord( 750, 500 ),
+          new Coord( 500, 250 )
   );
 
   private Coord lastWaypoint;
   /** Inverted, i.e., only allow nodes to move inside the polygon. */
   private final boolean invert;
   //==========================================================================//
+
+
+  //==========================================================================//
+  // Settings
+  //==========================================================================//
+  /** {@code true} to confine nodes inside the polygon */
+  public static final String INVERT_SETTING = "rwpInvert";
+  public static final boolean INVERT_DEFAULT = false;
+  public static final String POLYGON_FILE = "polygonFile";
+
+  //==========================================================================//
+
 
 
 
@@ -96,6 +105,11 @@ extends MovementModel {
     super( settings );
     // Read the invert setting
     this.invert = settings.getBoolean( INVERT_SETTING, INVERT_DEFAULT );
+
+    try {
+      String fileName = settings.getSetting(POLYGON_FILE);
+      this.polygon = readPoly(fileName);
+    } catch (Throwable ignored) {}
   }
 
   public ProhibitedPolygonRwp( final ProhibitedPolygonRwp other ) {
@@ -105,6 +119,28 @@ extends MovementModel {
     super( other );
     // Remember to copy any state defined in this class.
     this.invert = other.invert;
+  }
+  //==========================================================================//
+
+  //==========================================================================//
+  // Private - Utilities
+  //==========================================================================//
+
+  private static List<Coord> readPoly(String fileName) {
+    List<Coord> polygon = new ArrayList<Coord>();
+    WKTReader reader = new WKTReader();
+    File polygonFile = null;
+    List<List<Coord>> coords;
+
+    try {
+      polygonFile = new File(fileName);
+      coords = reader.readLines(polygonFile);
+    }
+    catch (IOException ioe){
+      throw new SettingsError("Couldn't read MapRoute-data file " +
+              fileName + 	" (cause: " + ioe.getMessage() + ")");
+    }
+    return polygon;
   }
   //==========================================================================//
 

@@ -25,7 +25,7 @@ extends MovementModel {
   //==========================================================================//
   // Instance vars
   //==========================================================================//
-  List <Coord> polygon = Arrays.asList(
+  private List <Coord> polygon = Arrays.asList(
           new Coord( 500, 250 ),
           new Coord( 250, 500 ),
           new Coord( 500, 750 ),
@@ -113,12 +113,13 @@ extends MovementModel {
   }
 
   public ProhibitedPolygonRwp( final ProhibitedPolygonRwp other ) {
-    // Copy constructor will be used when settings up nodes. Only one
+    // Copy constructor will be used when setting up nodes. Only one
     // prototype node instance in a group is created using the Settings
     // passing constructor, the rest are replicated from the prototype.
     super( other );
     // Remember to copy any state defined in this class.
     this.invert = other.invert;
+    this.polygon = other.polygon;
   }
   //==========================================================================//
 
@@ -127,23 +128,19 @@ extends MovementModel {
   //==========================================================================//
 
   private static List<Coord> readPoly(String fileName) {
-    List<Coord> polygon = new ArrayList<Coord>();
+    List<Coord> polygon;
     WKTReader reader = new WKTReader();
     File polygonFile = null;
-    List<List<Coord>> coords;
 
     try {
       polygonFile = new File(fileName);
-      coords = reader.readLines(polygonFile);
+      polygon = reader.readPoints(polygonFile);
     }
     catch (IOException ioe){
       throw new SettingsError("Couldn't read MapRoute-data file " +
               fileName + 	" (cause: " + ioe.getMessage() + ")");
     }
 
-    for (List<Coord> l : coords) {
-      System.out.println(l);
-    }
     return polygon;
   }
   //==========================================================================//

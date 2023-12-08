@@ -140,6 +140,10 @@ extends MovementModel {
       throw new SettingsError("Couldn't read MapRoute-data file " +
               fileName + 	" (cause: " + ioe.getMessage() + ")");
     }
+
+    for (List<Coord> l : coords) {
+      System.out.println(l);
+    }
     return polygon;
   }
   //==========================================================================//

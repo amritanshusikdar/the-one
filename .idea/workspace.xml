@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4d81be6-c957-4ec3-9c01-fc2a8058a34e" name="Changes" comment="Updated .gitignore">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/the-one.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d4d81be6-c957-4ec3-9c01-fc2a8058a34e" name="Changes" comment="project structure update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod_mov_test_files/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mod_mov_test_files/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702031698971</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="project structure update">
+      <option name="closed" value="true" />
+      <created>1702042313506</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702042313506</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +153,7 @@
     <MESSAGE value="Created script to convert xml map from draw.io to wkt file" />
     <MESSAGE value="Map files + debugging files" />
     <MESSAGE value="Updated .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated .gitignore" />
+    <MESSAGE value="project structure update" />
+    <option name="LAST_COMMIT_MESSAGE" value="project structure update" />
   </component>
 </project>

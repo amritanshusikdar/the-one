@@ -7,6 +7,7 @@ The script will simply overwrite map.wkt, should it already exist.
 
 import xml.etree.ElementTree as ET
 import sys
+import os
 
 def parse_xml_to_wkt(xml_file_path):
     tree = ET.parse(xml_file_path)
@@ -55,7 +56,9 @@ xml_file_path = sys.argv[1]
 wkt_output = parse_xml_to_wkt(xml_file_path)
 
 # Map output file
-output_file_path = 'map.wkt'
+filename_without_extension, _ = os.path.splitext(os.path.basename(xml_file_path))
+output_file_path = filename_without_extension + ".wkt"
+
 with open(output_file_path, 'w') as file:
     file.write(wkt_output)
 

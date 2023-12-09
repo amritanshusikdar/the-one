@@ -285,4 +285,6 @@ public abstract class MovementModel {
 		}
 	}
 
+	public void setPath(Coord coords) {
+	}
 }

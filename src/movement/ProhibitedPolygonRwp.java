@@ -4,6 +4,7 @@ import core.Coord;
 import core.Settings;
 import core.SettingsError;
 import input.WKTReader;
+import movement.map.DijkstraPathFinder;
 import movement.map.MapRoute;
 
 import java.io.File;
@@ -73,6 +74,13 @@ extends MovementModel {
 
     this.lastWaypoint = c;
     return p;
+  }
+
+  @Override
+  public void setPath(Coord coords) {
+    Coord dest = coords;
+    //f = new DijkstraPathFinder(polygon);
+    this.lastWaypoint = coords;
   }
 
   @Override

@@ -4,26 +4,36 @@
 Scenario.name = ProhibitedPolygon3
 Scenario.endTime = 6000
 Scenario.updateInterval = 0.1
-Scenario.simulateConnections = false
+Scenario.simulateConnections = true
 MovementModel.worldSize = 1000,1000
 Events.nrof = 0
 
 # Communication Interface
-myInterface.type = SimpleBroadcastInterface
-myInterface.transmitRange = 0
+myInterface.type = HubInterface
+myInterface.hubGroups = train
+myInterface.transmitRange = 1500
 myInterface.transmitSpeed = 0
 
 # Groups
-Scenario.nrofHostGroups = 1
+Scenario.nrofHostGroups = 2
 
 Group1.groupID = polygon
-Group1.nrofHosts = 100
+Group1.nrofHosts = 10
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
 Group1.movementModel = ProhibitedPolygonRwp
 Group1.rwpInvert = true
 Group1.polygonFile = data/polygon.wkt
-Group1.router = PassiveRouter
+Group1.router = CustomRouter
+Group1.waitTime = 0, 100
+
+Group2.groupID = train
+Group2.nrofHosts = 1
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 0,0
+Group2.nrofInterfaces = 1
+Group2.interface1 = myInterface
+Group2.router = PassiveRouter
 
 # Reports
 Report.nrofReports = 0

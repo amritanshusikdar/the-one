@@ -438,6 +438,10 @@ public class DTNHost implements Comparable<DTNHost> {
 		return true;
 	}
 
+	public void setNewDestination(Coord coords) {
+		this.movement.setPath(coords);
+	}
+
 	/**
 	 * Sends a message from this host to another host
 	 * @param id Identifier of the message

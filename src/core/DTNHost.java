@@ -439,7 +439,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	}
 
 	public void setNewDestination(Coord coords) {
-		this.movement.setPath(coords);
+		this.movement.setPath(this.getLocation(), coords);
 	}
 
 	/**

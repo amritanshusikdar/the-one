@@ -5,6 +5,7 @@ import core.Settings;
 import core.SettingsError;
 import input.WKTReader;
 import movement.map.DijkstraPathFinder;
+import movement.map.MapNode;
 import movement.map.MapRoute;
 
 import java.io.File;
@@ -37,6 +38,7 @@ extends MovementModel {
   private Coord lastWaypoint;
   /** Inverted, i.e., only allow nodes to move inside the polygon. */
   private final boolean invert;
+
   //==========================================================================//
 
 
@@ -77,10 +79,18 @@ extends MovementModel {
   }
 
   @Override
-  public void setPath(Coord coords) {
+  public void setPath(Coord src, Coord coords) {
     Coord dest = coords;
-    //f = new DijkstraPathFinder(polygon);
-    this.lastWaypoint = coords;
+    Integer[] okNodes = getOkNodes(src, dest);
+    int[] okNodesInt = Arrays.stream(okNodes).mapToInt(Integer::intValue).toArray();
+    DijkstraPathFinder f = new DijkstraPathFinder(okNodesInt);
+    List<MapNode> shortestPath = f.getShortestPath(new MapNode(src), new MapNode(dest));
+
+
+    System.out.println(isInside(this.polygon, coords));
+    System.out.println(shortestPath);
+    System.out.println(Arrays.toString(okNodesInt));
+    this.lastWaypoint = dest;
   }
 
   @Override
@@ -151,12 +161,29 @@ extends MovementModel {
 
     return polygon;
   }
+
   //==========================================================================//
 
 
   //==========================================================================//
   // Private - geometry
   //==========================================================================//
+  private Integer[] getOkNodes(Coord src, Coord dest) {
+    List<Integer> points = new ArrayList<Integer>();
+    points.add((int)src.getX());
+    points.add((int)src.getY());
+    for (Coord c: this.polygon){
+      points.add((int)c.getX());
+      points.add((int)c.getY());
+    }
+    points.add((int)dest.getX());
+    points.add((int)dest.getY());
+
+    Integer[] okNodes = new Integer[points.size()];
+    okNodes = points.toArray(okNodes);
+    return okNodes;
+  }
+
   private static boolean pathIntersects(
       final List <Coord> polygon,
       final Coord start,

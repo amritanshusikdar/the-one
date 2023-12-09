@@ -31,13 +31,13 @@ def parse_xml_to_wkt(xml_file_path):
             if source_point is not None and target_point is not None:
                 x1, y1 = source_point.get('x'), source_point.get('y')
                 x2, y2 = target_point.get('x'), target_point.get('y')
-                multilinestring = f"({x1} {y1}, {x2} {y2})"
+                multilinestring = f"({x1} -{y1}, {x2} -{y2})"
                 multilinestrings.append(multilinestring)
 
             # Geometry contains coordinates for a polygon
             if points_array is not None:
                 array_points = [(point.get('x'), point.get('y')) for point in points_array.findall('mxPoint')]
-                polygon = ", ".join([f"{x} {y}" for x, y in array_points])
+                polygon = ", ".join([f"{x} -{y}" for x, y in array_points])
                 polygons.append(f"(({polygon}))")
 
     combined_wkt = []

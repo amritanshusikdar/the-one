@@ -41,7 +41,7 @@ def parse_xml_to_wkt(xml_file_path):
 
     combined_wkt = []
     if multilinestring:
-        combined_wkt.append("MULTILINESTRING(" + ", ".join(multilinestrings) + ")")
+        combined_wkt.append("MULTILINESTRING (" + ", ".join(multilinestrings) + ")")
     if polygons:
         combined_wkt.append("POLYGON " + ", ".join(polygons))
 

@@ -25,6 +25,8 @@ public class DTNHost implements Comparable<DTNHost> {
 	private Coord location; 	// where is the host
 	private Coord destination;	// where is it going
 
+	private Coord target;
+
 	private MessageRouter router;
 	private MovementModel movement;
 	private Path path;
@@ -82,6 +84,7 @@ public class DTNHost implements Comparable<DTNHost> {
 		setRouter(mRouterProto.replicate());
 
 		this.location = movement.getInitialLocation();
+		this.target = new Coord(0,0);
 
 		this.nextTimeToMove = movement.nextPathAvailable();
 		this.path = null;
@@ -382,6 +385,11 @@ public class DTNHost implements Comparable<DTNHost> {
 		if (!isMovementActive() || SimClock.getTime() < this.nextTimeToMove) {
 			return;
 		}
+
+		if ((int)this.location.getX() == (int)target.getX() && (int)this.location.getY() == (int)target.getY()) {
+			return;
+		}
+
 		if (this.destination == null) {
 			if (!setNextWaypoint()) {
 				return;
@@ -439,7 +447,13 @@ public class DTNHost implements Comparable<DTNHost> {
 	}
 
 	public void setNewDestination(Coord coords) {
-		this.movement.setPath(this.getLocation(), coords);
+		this.target = coords;
+		path = this.movement.setPath(this.getLocation(), coords);
+		System.out.println(path);
+		this.destination = path.getNextWaypoint();
+		this.speed = 1;
+
+		System.out.println(path);
 	}
 
 	/**

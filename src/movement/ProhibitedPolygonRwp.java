@@ -79,18 +79,32 @@ extends MovementModel {
   }
 
   @Override
-  public void setPath(Coord src, Coord coords) {
+  public Path setPath(Coord src, Coord coords) {
     Coord dest = coords;
     Integer[] okNodes = getOkNodes(src, dest);
     int[] okNodesInt = Arrays.stream(okNodes).mapToInt(Integer::intValue).toArray();
     DijkstraPathFinder f = new DijkstraPathFinder(okNodesInt);
-    List<MapNode> shortestPath = f.getShortestPath(new MapNode(src), new MapNode(dest));
 
+    MapNode srcNode = new MapNode(src);
+    srcNode.addType(1);
+    MapNode destNode = new MapNode(dest);
+    destNode.addType(1);
 
-    System.out.println(isInside(this.polygon, coords));
-    System.out.println(shortestPath);
-    System.out.println(Arrays.toString(okNodesInt));
-    this.lastWaypoint = dest;
+    srcNode.addNeighbor(destNode);
+    //destNode.addNeighbor(srcNode);
+    for (Coord c: this.polygon) {
+      srcNode.addNeighbor(new MapNode(c));
+      //destNode.addNeighbor(new MapNode(c));
+    }
+
+    List<MapNode> shortestPathNodes = f.getShortestPath(srcNode, destNode);
+    System.out.println(shortestPathNodes);
+
+    Path shortestPath = new Path();
+    for (MapNode n : shortestPathNodes.subList(1, shortestPathNodes.size())) {
+      shortestPath.addWaypoint(n.getLocation());
+    }
+    return shortestPath;
   }
 
   @Override
@@ -169,7 +183,7 @@ extends MovementModel {
   // Private - geometry
   //==========================================================================//
   private Integer[] getOkNodes(Coord src, Coord dest) {
-    List<Integer> points = new ArrayList<Integer>();
+    /*List<Integer> points = new ArrayList<Integer>();
     points.add((int)src.getX());
     points.add((int)src.getY());
     for (Coord c: this.polygon){
@@ -180,8 +194,10 @@ extends MovementModel {
     points.add((int)dest.getY());
 
     Integer[] okNodes = new Integer[points.size()];
-    okNodes = points.toArray(okNodes);
-    return okNodes;
+    okNodes = points.toArray(okNodes);*/
+
+    Integer[] test = {1,2,3,4,5,6,7,8,9};
+    return test;
   }
 
   private static boolean pathIntersects(

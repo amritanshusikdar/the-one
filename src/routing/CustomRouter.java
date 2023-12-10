@@ -38,8 +38,7 @@ public class CustomRouter extends MessageRouter {
 	public void changedConnection(Connection con) {
 		// go to the train coordinates
 		if (con.isUp()) {
-			System.out.println(this.getHost().getLocation());
-			this.getHost().setNewDestination(new Coord(700,410));
+			this.getHost().setNewDestination(new Coord(800,410));
 		}
 	}
 

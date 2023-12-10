@@ -30,7 +30,7 @@ Group1.waitTime = 0, 100
 Group2.groupID = train
 Group2.nrofHosts = 1
 Group2.movementModel = StationaryMovement
-Group2.nodeLocation = 800,410
+Group2.nodeLocation = 1135,120
 Group2.nrofInterfaces = 1
 Group2.interface1 = myInterface
 Group2.router = PassiveRouter
@@ -38,3 +38,9 @@ Group2.router = PassiveRouter
 # Reports
 Report.nrofReports = 0
 Report.reportDir = reports
+
+## GUI settings
+
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/map.png
+GUI.UnderlayImage.offset = 0,0

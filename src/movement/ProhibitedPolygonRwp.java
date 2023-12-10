@@ -80,30 +80,74 @@ extends MovementModel {
 
   @Override
   public Path setPath(Coord src, Coord coords) {
-    Coord dest = coords;
-    Integer[] okNodes = getOkNodes(src, dest);
-    int[] okNodesInt = Arrays.stream(okNodes).mapToInt(Integer::intValue).toArray();
-    DijkstraPathFinder f = new DijkstraPathFinder(okNodesInt);
+    Path shortestPath;
 
-    MapNode srcNode = new MapNode(src);
-    srcNode.addType(1);
-    MapNode destNode = new MapNode(dest);
-    destNode.addType(1);
+    if (!isInside(this.polygon, coords)) {  // if the target node is not in the polygon
+      return new Path();
+    }
+    if (countIntersectedEdges(this.polygon, src, coords) == 0) {  // if the target node is in the polygon and directly reachable
+      System.out.println("en tranquille");
+      shortestPath = new Path();
+      shortestPath.addWaypoint(src);
+      shortestPath.addWaypoint(coords);
+    }
+    else {  // if the target node is in the polygon and is reachable through intermediaries
+      int[] okNodes = {1,2};
+      DijkstraPathFinder f = new DijkstraPathFinder(okNodes);
 
-    srcNode.addNeighbor(destNode);
-    //destNode.addNeighbor(srcNode);
-    for (Coord c: this.polygon) {
-      srcNode.addNeighbor(new MapNode(c));
-      //destNode.addNeighbor(new MapNode(c));
+      MapNode srcNode = new MapNode(src);
+      srcNode.addType(1);
+      MapNode destNode = new MapNode(coords);
+      destNode.addType(1);
+
+      MapNode n1;
+      MapNode n2;
+      ArrayList<Coord> seen;
+
+      ArrayList<MapNode> allNodes = new ArrayList<MapNode>();
+      for (Coord c1 : this.polygon) {
+        //System.out.println(c1);
+        //System.out.println(countIntersectedEdges(this.polygon, coords, c1));
+        //System.out.println(countIntersectedEdges(this.polygon, c1, coords));
+        n1 = new MapNode(c1);
+        n1.addType(1);
+        allNodes.add(n1);
+
+        if (countIntersectedEdges(this.polygon, src, c1) <= 2) {
+          srcNode.addNeighbor(n1);
+          n1.addNeighbor(srcNode);
+        }
+        if (countIntersectedEdges(this.polygon, coords, c1) <= 2) {
+          destNode.addNeighbor(n1);
+          n1.addNeighbor(destNode);
+        }
+
+        seen = new ArrayList<Coord>();
+        for (Coord c2 : this.polygon) {
+          if (!seen.contains(c2) && !c2.equals(c1)) {
+            seen.add(c2);
+            n2 = new MapNode(c2);
+            n2.addType(1);
+            allNodes.add(n2);
+            //System.out.println(countIntersectedEdges(this.polygon, c1, c2));
+
+            if (countIntersectedEdges(this.polygon, c1, c2) <= 2) {
+              n1.addNeighbor(n2);
+              n2.addNeighbor(n1);
+            }
+          }
+        }
+      }
+
+      List<MapNode> shortestPathNodes = f.getShortestPath(srcNode, destNode);
+
+      shortestPath = new Path();
+      for (MapNode n : shortestPathNodes) {
+        shortestPath.addWaypoint(n.getLocation());
+      }
     }
 
-    List<MapNode> shortestPathNodes = f.getShortestPath(srcNode, destNode);
-    System.out.println(shortestPathNodes);
 
-    Path shortestPath = new Path();
-    for (MapNode n : shortestPathNodes.subList(1, shortestPathNodes.size())) {
-      shortestPath.addWaypoint(n.getLocation());
-    }
     return shortestPath;
   }
 
@@ -182,24 +226,6 @@ extends MovementModel {
   //==========================================================================//
   // Private - geometry
   //==========================================================================//
-  private Integer[] getOkNodes(Coord src, Coord dest) {
-    /*List<Integer> points = new ArrayList<Integer>();
-    points.add((int)src.getX());
-    points.add((int)src.getY());
-    for (Coord c: this.polygon){
-      points.add((int)c.getX());
-      points.add((int)c.getY());
-    }
-    points.add((int)dest.getX());
-    points.add((int)dest.getY());
-
-    Integer[] okNodes = new Integer[points.size()];
-    okNodes = points.toArray(okNodes);*/
-
-    Integer[] test = {1,2,3,4,5,6,7,8,9};
-    return test;
-  }
-
   private static boolean pathIntersects(
       final List <Coord> polygon,
       final Coord start,

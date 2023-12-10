@@ -9,10 +9,11 @@ import xml.etree.ElementTree as ET
 import sys
 import os
 
-combined_wkt_multilinestring = ""
-combined_wkt_polygon = ""
 
 def parse_xml_to_wkt(xml_file_path):
+    global combined_wkt_multilinestring
+    global combined_wkt_polygon
+    
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
 

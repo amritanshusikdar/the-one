@@ -86,7 +86,7 @@ extends MovementModel {
       return new Path();
     }
     if (countIntersectedEdges(this.polygon, src, coords) == 0) {  // if the target node is in the polygon and directly reachable
-      System.out.println("en tranquille");
+      System.out.println("en tranquille: "+ countIntersectedEdges(this.polygon, src, coords));
       shortestPath = new Path();
       shortestPath.addWaypoint(src);
       shortestPath.addWaypoint(coords);

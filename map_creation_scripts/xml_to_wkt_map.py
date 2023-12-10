@@ -9,8 +9,8 @@ import xml.etree.ElementTree as ET
 import sys
 import os
 
-combined_wkt_multilinestring = []
-combined_wkt_polygon = []
+combined_wkt_multilinestring = ""
+combined_wkt_polygon = ""
 
 def parse_xml_to_wkt(xml_file_path):
     tree = ET.parse(xml_file_path)
@@ -44,27 +44,31 @@ def parse_xml_to_wkt(xml_file_path):
                 polygons.append(f"(({polygon}))")
 
     if multilinestring:
-        combined_wkt_multilinestring.append("MULTILINESTRING (" + ", ".join(multilinestrings) + ")")
+        combined_wkt_multilinestring = "MULTILINESTRING (" + ", ".join(multilinestrings) + ")"
     if polygons:
-        combined_wkt_polygon.append("POLYGON " + ", ".join(polygons))
+        combined_wkt_polygon = "POLYGON " + ", ".join(polygons)
 
 if len(sys.argv) != 2 or sys.argv[1]=="-h":
     print("Usage: python3 xml_to_wkt_map.py <xml_file_path>")
     sys.exit(1)
 
+# File path is given as second argument by user
 xml_file_path = sys.argv[1]
 
 parse_xml_to_wkt(xml_file_path)
 
-# Map output file
+# Extract filename from filepath given by user
 filename_without_extension, _ = os.path.splitext(os.path.basename(xml_file_path))
+# Output´files are different for MULTILINESTRINGS and POLYGONS
 output_file_path_multilinestring = filename_without_extension + "_multilinestring.wkt"
 output_file_path_polygon = filename_without_extension + "_polygon.wkt"
 
+# Output MULTILINESTRING file
 with open(output_file_path_multilinestring, 'w') as file:
-    file.write(''.join(combined_wkt_multilinestring))
+    file.write(combined_wkt_multilinestring)
 
+# Output POLYGON file
 with open(output_file_path_polygon, 'w') as file:
-    file.write(''.join(combined_wkt_polygon))
+    file.write(combined_wkt_polygon)
 
 print(f"WKT map data has been written to {output_file_path_multilinestring} and {output_file_path_polygon}.")

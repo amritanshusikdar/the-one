@@ -86,7 +86,6 @@ extends MovementModel {
       return new Path();
     }
     if (countIntersectedEdges(this.polygon, src, coords) == 0) {  // if the target node is in the polygon and directly reachable
-      System.out.println("en tranquille: "+ countIntersectedEdges(this.polygon, src, coords));
       shortestPath = new Path();
       shortestPath.addWaypoint(src);
       shortestPath.addWaypoint(coords);
@@ -106,9 +105,6 @@ extends MovementModel {
 
       ArrayList<MapNode> allNodes = new ArrayList<MapNode>();
       for (Coord c1 : this.polygon) {
-        //System.out.println(c1);
-        //System.out.println(countIntersectedEdges(this.polygon, coords, c1));
-        //System.out.println(countIntersectedEdges(this.polygon, c1, coords));
         n1 = new MapNode(c1);
         n1.addType(1);
         allNodes.add(n1);
@@ -264,6 +260,17 @@ extends MovementModel {
             && isOnSegment( start, end, intersection ) ) {
         count++;
       }
+
+      /*if ((((polyP1.getX() >= polyP2.getX() && intersection.getX() <= polyP1.getX() && intersection.getX() >= polyP2.getX())
+       || (polyP1.getX() <= polyP2.getX() && intersection.getX() >= polyP1.getX() && intersection.getX() <= polyP2.getX()))
+       && ((polyP1.getY() >= polyP2.getY() && intersection.getY() <= polyP1.getY() && intersection.getY() >= polyP2.getY())
+       || (polyP1.getY() <= polyP2.getY() && intersection.getY() >= polyP1.getY() && intersection.getY() <= polyP2.getY())))
+       && (((start.getX() >= end.getX() && intersection.getX() <= start.getX() && intersection.getX() >= end.getX())
+       || (start.getX() <= end.getX() && intersection.getX() >= start.getX() && intersection.getX() <= end.getX()))
+       && ((start.getY() >= end.getY() && intersection.getY() <= start.getY() && intersection.getY() >= end.getY())
+       || (start.getY() <= end.getY() && intersection.getY() >= start.getY() && intersection.getY() <= end.getY())))) {
+        count++;
+      }*/
     }
     return count;
   }
@@ -285,7 +292,7 @@ extends MovementModel {
     final double squaredLength
         = ( L1.getX() - L0.getX() ) * ( L1.getX() - L0.getX() )
         + (L1.getY() - L0.getY() ) * (L1.getY() - L0.getY() );
-    if ( dotProduct > squaredLength ) return false;
+    if ( dotProduct > squaredLength + 1e-10 ) return false;
 
     return true;
   }

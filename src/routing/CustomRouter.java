@@ -45,8 +45,8 @@ public class CustomRouter extends MessageRouter {
 		// go to the train coordinates
 		if (this.routerActiveTime != -1) this.getHost().setRouterActiveTime(this.routerActiveTime);
 		String groupId = con.getOtherNode(this.getHost()).groupId;
-		if (con.isUp()) {
-			this.getHost().setNewDestination(new Coord(1135,120));
+		if (con.isUp() && groupId.equals("train")) {
+			this.getHost().setTarget(new Coord(1135,120));
 		}
 	}
 

@@ -30,6 +30,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	private MessageRouter router;
 	private MovementModel movement;
 	private Path path;
+	private Path targetPath = null;
 	private double speed;
 	private double nextTimeToMove;
 	public final String groupId;
@@ -43,6 +44,9 @@ public class DTNHost implements Comparable<DTNHost> {
 		DTNSim.registerForReset(DTNHost.class.getCanonicalName());
 		reset();
 	}
+
+	private double routerActiveTime = 0;
+
 	/**
 	 * Creates a new DTNHost.
 	 * @param msgLs Message listeners
@@ -386,6 +390,11 @@ public class DTNHost implements Comparable<DTNHost> {
 			return;
 		}
 
+		if (SimClock.getTime() > this.routerActiveTime && this.targetPath != null && this.targetPath.hasNext()) {
+			this.path = this.targetPath;
+			System.out.println(this.name);
+		}
+
 		if ((int)this.location.getX() == (int)target.getX() && (int)this.location.getY() == (int)target.getY()) {
 			return;
 		}
@@ -448,8 +457,8 @@ public class DTNHost implements Comparable<DTNHost> {
 
 	public void setNewDestination(Coord coords) {
 		this.target = coords;
-		this.path = this.movement.setPath(this.getLocation(), coords);
-		this.path.setSpeed(1);
+		this.targetPath = this.movement.setPath(this.getLocation(), coords);
+		this.targetPath.setSpeed(1);
 	}
 
 	/**
@@ -554,4 +563,7 @@ public class DTNHost implements Comparable<DTNHost> {
 		return this.getAddress() - h.getAddress();
 	}
 
+	public void setRouterActiveTime(double t) {
+		this.routerActiveTime = t;
+	}
 }

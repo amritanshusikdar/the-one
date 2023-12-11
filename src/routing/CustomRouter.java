@@ -8,6 +8,8 @@ import core.Connection;
 import core.Coord;
 import core.Settings;
 
+import java.util.Objects;
+
 /**
  * Passive router that doesn't send anything unless commanded. This is useful
  * for external event -controlled routing or dummy nodes.
@@ -15,9 +17,12 @@ import core.Settings;
  */
 public class CustomRouter extends MessageRouter {
 
+	private double routerActiveTime = -1;
 	public CustomRouter(Settings s) {
 		super(s);
-
+		try {
+			this.routerActiveTime = Double.parseDouble(s.getSetting("routerActiveTime"));
+		} catch (Throwable ignored) {}
 		//To do: set the buffer size to a random number between 0 and 3?
 	}
 
@@ -27,6 +32,7 @@ public class CustomRouter extends MessageRouter {
 	 */
 	protected CustomRouter(CustomRouter r) {
 		super(r);
+		this.routerActiveTime = r.routerActiveTime;
 	}
 
 	@Override
@@ -37,9 +43,10 @@ public class CustomRouter extends MessageRouter {
 	@Override
 	public void changedConnection(Connection con) {
 		// go to the train coordinates
+		if (this.routerActiveTime != -1) this.getHost().setRouterActiveTime(this.routerActiveTime);
+		String groupId = con.getOtherNode(this.getHost()).groupId;
 		if (con.isUp()) {
 			this.getHost().setNewDestination(new Coord(1135,120));
-			//this.getHost().setNewDestination(new Coord(800,410));
 		}
 	}
 

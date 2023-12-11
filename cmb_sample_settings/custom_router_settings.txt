@@ -1,6 +1,3 @@
-## Settings that define ProhibitedPolygonRwp movement with two groups.
-## One group is confined inside the polygon, the other outside.
-
 Scenario.name = ProhibitedPolygon3
 Scenario.endTime = 6000
 Scenario.updateInterval = 0.1
@@ -26,6 +23,7 @@ Group1.rwpInvert = true
 Group1.polygonFile = data/polygon.wkt
 Group1.router = CustomRouter
 Group1.waitTime = 0, 100
+Group1.routerActiveTime = 500
 
 Group2.groupID = train
 Group2.nrofHosts = 1
@@ -33,6 +31,7 @@ Group2.movementModel = StationaryMovement
 Group2.nodeLocation = 1135,120
 Group2.nrofInterfaces = 1
 Group2.interface1 = myInterface
+Group2.activeTimes = 1000, 6000
 Group2.router = PassiveRouter
 
 # Reports

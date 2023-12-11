@@ -450,8 +450,6 @@ public class DTNHost implements Comparable<DTNHost> {
 		this.target = coords;
 		this.path = this.movement.setPath(this.getLocation(), coords);
 		this.path.setSpeed(1);
-
-		System.out.println(path);
 	}
 
 	/**

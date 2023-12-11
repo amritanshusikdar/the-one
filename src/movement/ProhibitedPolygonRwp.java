@@ -125,7 +125,6 @@ extends MovementModel {
             n2 = new MapNode(c2);
             n2.addType(1);
             allNodes.add(n2);
-            //System.out.println(countIntersectedEdges(this.polygon, c1, c2));
 
             if (countIntersectedEdges(this.polygon, c1, c2) <= 2) {
               n1.addNeighbor(n2);
@@ -260,17 +259,6 @@ extends MovementModel {
             && isOnSegment( start, end, intersection ) ) {
         count++;
       }
-
-      /*if ((((polyP1.getX() >= polyP2.getX() && intersection.getX() <= polyP1.getX() && intersection.getX() >= polyP2.getX())
-       || (polyP1.getX() <= polyP2.getX() && intersection.getX() >= polyP1.getX() && intersection.getX() <= polyP2.getX()))
-       && ((polyP1.getY() >= polyP2.getY() && intersection.getY() <= polyP1.getY() && intersection.getY() >= polyP2.getY())
-       || (polyP1.getY() <= polyP2.getY() && intersection.getY() >= polyP1.getY() && intersection.getY() <= polyP2.getY())))
-       && (((start.getX() >= end.getX() && intersection.getX() <= start.getX() && intersection.getX() >= end.getX())
-       || (start.getX() <= end.getX() && intersection.getX() >= start.getX() && intersection.getX() <= end.getX()))
-       && ((start.getY() >= end.getY() && intersection.getY() <= start.getY() && intersection.getY() >= end.getY())
-       || (start.getY() <= end.getY() && intersection.getY() >= start.getY() && intersection.getY() <= end.getY())))) {
-        count++;
-      }*/
     }
     return count;
   }

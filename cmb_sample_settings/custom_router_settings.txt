@@ -18,7 +18,7 @@ myInterface.transmitSpeed = 0
 Scenario.nrofHostGroups = 2
 
 Group1.groupID = polygon
-Group1.nrofHosts = 100
+Group1.nrofHosts = 10
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
 Group1.movementModel = ProhibitedPolygonRwp

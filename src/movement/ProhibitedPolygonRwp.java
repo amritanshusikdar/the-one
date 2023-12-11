@@ -79,24 +79,45 @@ extends MovementModel {
   }
 
   @Override
-  public Path setPath(Coord src, Coord coords) {
-    Path shortestPath;
+  public Path findPath(Coord src, Coord checkpoint, Coord coords) {
+    Path shortestPath = new Path();
+    Coord srcCoord = src;
+    Coord destCoord = coords;
 
-    if (!isInside(this.polygon, coords)) {  // if the target node is not in the polygon
+    if (!isInside(this.polygon, coords) || (checkpoint != null && !isInside(this.polygon, checkpoint))) {  // if the target node is not in the polygon
       return new Path();
     }
-    if (countIntersectedEdges(this.polygon, src, coords) == 0) {  // if the target node is in the polygon and directly reachable
-      shortestPath = new Path();
-      shortestPath.addWaypoint(src);
-      shortestPath.addWaypoint(coords);
+
+    if (checkpoint != null) {
+      shortestPath = getOptimizedPath(srcCoord, checkpoint);
+      srcCoord = checkpoint;
     }
-    else {  // if the target node is in the polygon and is reachable through intermediaries
-      int[] okNodes = {1,2};
+    if (!shortestPath.hasNext()) {
+      shortestPath = getOptimizedPath(srcCoord, destCoord);
+    } else {
+      Path pathToEnd = getOptimizedPath(srcCoord, destCoord);
+      pathToEnd.getNextWaypoint();
+      while (pathToEnd.hasNext()) {
+        shortestPath.addWaypoint(pathToEnd.getNextWaypoint());
+      }
+    }
+
+    return shortestPath;
+  }
+
+  private Path getOptimizedPath(Coord srcCoord, Coord destCoord) {
+    Path shortestPath;
+    if (countIntersectedEdges(this.polygon, srcCoord, destCoord) == 0) {  // if the target node is in the polygon and directly reachable
+      shortestPath = new Path();
+      shortestPath.addWaypoint(srcCoord);
+      shortestPath.addWaypoint(destCoord);
+    } else {  // if the target node is in the polygon and is reachable through intermediaries
+      int[] okNodes = {1, 2};
       DijkstraPathFinder f = new DijkstraPathFinder(okNodes);
 
-      MapNode srcNode = new MapNode(src);
+      MapNode srcNode = new MapNode(srcCoord);
       srcNode.addType(1);
-      MapNode destNode = new MapNode(coords);
+      MapNode destNode = new MapNode(destCoord);
       destNode.addType(1);
 
       MapNode n1;
@@ -109,11 +130,11 @@ extends MovementModel {
         n1.addType(1);
         allNodes.add(n1);
 
-        if (countIntersectedEdges(this.polygon, src, c1) <= 2) {
+        if (countIntersectedEdges(this.polygon, srcCoord, c1) <= 2) {
           srcNode.addNeighbor(n1);
           n1.addNeighbor(srcNode);
         }
-        if (countIntersectedEdges(this.polygon, coords, c1) <= 2) {
+        if (countIntersectedEdges(this.polygon, destCoord, c1) <= 2) {
           destNode.addNeighbor(n1);
           n1.addNeighbor(destNode);
         }
@@ -141,7 +162,6 @@ extends MovementModel {
         shortestPath.addWaypoint(n.getLocation());
       }
     }
-
 
     return shortestPath;
   }

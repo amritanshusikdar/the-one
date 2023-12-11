@@ -46,6 +46,8 @@ public class DTNHost implements Comparable<DTNHost> {
 	}
 
 	private double routerActiveTime = 0;
+	private Coord checkpoint = null;
+	private boolean destinationSet = false;
 
 	/**
 	 * Creates a new DTNHost.
@@ -390,12 +392,12 @@ public class DTNHost implements Comparable<DTNHost> {
 			return;
 		}
 
-		if (SimClock.getTime() > this.routerActiveTime && this.target != null) {
+		if (SimClock.getTime() > this.routerActiveTime && this.target != null && !this.destinationSet) {
 			setNewDestination(this.target);
 			if (targetPath.hasNext()) this.path = this.targetPath;
 		}
 
-		if ((int)this.location.getX() == (int)target.getX() && (int)this.location.getY() == (int)target.getY()) {
+		if ((int)this.location.getX() == (int)this.target.getX() && (int)this.location.getY() == (int)this.target.getY()) {
 			return;
 		}
 
@@ -459,9 +461,14 @@ public class DTNHost implements Comparable<DTNHost> {
 		this.target = coords;
 	}
 
+	public void setCheckpoint(Coord coords) {
+		this.checkpoint = coords;
+	}
+
 	private void setNewDestination(Coord target) {
-		this.targetPath = this.movement.setPath(this.getLocation(), target);
+		this.targetPath = this.movement.findPath(this.getLocation(), this.checkpoint, target);
 		this.targetPath.setSpeed(1);
+		this.destinationSet = true;
 	}
 
 	/**

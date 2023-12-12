@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="479a11b9-62d6-4cd7-9fd6-9130f5bc36f2" name="Changes" comment="testing">
+      <change afterPath="$PROJECT_DIR$/mod_mov_test_files/g2.wkt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmb_sample_settings/nu_mod_mov_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmb_sample_settings/nu_mod_mov_test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod_mov_test_files/g1.wkt" beforeDir="false" afterPath="$PROJECT_DIR$/mod_mov_test_files/g1.wkt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod_mov_test_files/sample_map.wkt" beforeDir="false" afterPath="$PROJECT_DIR$/mod_mov_test_files/sample_map.wkt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/movement/TimeBasedMapRouteMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/movement/TimeBasedMapRouteMovement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "model__movement__test",
+    "last_opened_file_path": "D:/2.TUM/2nd year/1st semester/CNB/Project/the-one/mod_mov_test_files",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -62,6 +63,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\2.TUM\2nd year\1st semester\CNB\Project\the-one\mod_mov_test_files" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="movement" />
     </key>

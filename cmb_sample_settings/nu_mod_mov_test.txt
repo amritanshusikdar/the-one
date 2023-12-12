@@ -39,9 +39,9 @@ Group2.nrofHosts = 1
 Group2.nrofInterfaces = 1
 Group2.interface1 = myInterface
 Group2.movementModel = TimeBasedMapRouteMovement
-Group2.routeFile = mod_mov_test_files/g1.wkt
+Group2.routeFile = mod_mov_test_files/g2.wkt
 Group2.routeType = 1
-Group2.rwpActivePeriod = 1000, 4000
+Group2.rwpActivePeriod = 2000, 5000
 Group2.router = PassiveRouter
 
 ## Map based movement -movement model specific settings

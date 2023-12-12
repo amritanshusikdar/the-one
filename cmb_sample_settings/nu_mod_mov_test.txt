@@ -25,13 +25,14 @@ Group1.groupID = x
 Group1.nrofHosts = 1
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
-Group1.movementModel = MapRouteMovement
+Group1.movementModel = TimeBasedMapRouteMovement
 Group1.routeFile = mod_mov_test_files/g1.wkt
 Group1.routeType = 1
+Group1.rwpActivePeriod = 1000, 4000
 Group1.router = PassiveRouter
-# Group1.waitTime = 100, 300 #this makes node to wait for given amount of secs in interval
-#Group1.startTime = 1000
-#Group1.endTime = 4000
+
+#Group1.rwpActivePeriod = (1000, 2000, 3000, 4000)
+# Group1.waitTime = 100, 300 #this makes node to wait for given amount of secs before going to the next location
 
 ## Map based movement -movement model specific settings
 MapBasedMovement.nrofMapFiles = 3

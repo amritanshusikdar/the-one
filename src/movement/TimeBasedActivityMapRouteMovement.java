@@ -22,7 +22,7 @@ import java.util.List;
  * way to next waypoint using {@link DijkstraPathFinder}. There can be
  * different type of routes; see {@link #ROUTE_TYPE_S}.
  */
-public class TimeBasedMapRouteMovement extends MapBasedMovement implements
+public class TimeBasedActivityMapRouteMovement extends MapBasedMovement implements
 	SwitchableMovement {
 
 	/** Per node group setting used for selecting a route file ({@value}) */
@@ -65,14 +65,21 @@ public class TimeBasedMapRouteMovement extends MapBasedMovement implements
 	 * Creates a new movement model based on a Settings object's settings.
 	 * @param settings The Settings object where the settings are read from
 	 */
-	public TimeBasedMapRouteMovement(Settings settings) {
+	public TimeBasedActivityMapRouteMovement(Settings settings) {
 		super(settings);
 
 		/** From here on Added by Nurlan */
 		// Read the activity period from the settings
 		final double[] active = settings.getCsvDoubles( ACTIVE_SETTING ,2 );
-		this.activeStart = active[ 0 ];
-		this.activeEnd = active[ 1 ];
+		this.activeStart = active[0];
+		this.activeEnd = active[1];
+//		if(active.length != 0) {
+//			this.activeStart = active[0];
+//			this.activeEnd = active[1];
+//		}else {
+//			this.activeStart = 0;
+//			this.activeEnd = getSimEndTime();
+//		}
 //		System.out.println(this.activeStart);
 //		System.out.println(this.activeEnd);
 		/** Until here by Nurlan */
@@ -102,7 +109,7 @@ public class TimeBasedMapRouteMovement extends MapBasedMovement implements
 	 * list of routes and randomizes the starting position.
 	 * @param proto The MapRouteMovement prototype
 	 */
-	protected TimeBasedMapRouteMovement(TimeBasedMapRouteMovement proto) {
+	protected TimeBasedActivityMapRouteMovement(TimeBasedActivityMapRouteMovement proto) {
 		super(proto);
 
 		/** From here on Added by Nurlan */
@@ -136,6 +143,7 @@ public class TimeBasedMapRouteMovement extends MapBasedMovement implements
 		/** From here on Added by Nurlan */
 		// Get the simulation time
 		double curTime = SimClock.getTime();
+
 		// NOTE: Cannot be called from getInitialLocation()!
 //		final double endTime = SimScenario.getInstance().getEndTime();
 
@@ -158,11 +166,22 @@ public class TimeBasedMapRouteMovement extends MapBasedMovement implements
 			p.addWaypoint(node.getLocation());
 		}
 
+		/** Between certain time intervals nodes go to a certain POINT*/
+//		if (curTime > 2000 && curTime <= 3000){
+//			Coord c = new Coord(500, 250);
+//			p.addWaypoint(c);
+//		}
+//		else {
+//			for (MapNode node : nodePath) { // create a Path from the shortest path
+//				p.addWaypoint(node.getLocation());
+//			}
+//		}
+
 		lastMapNode = to;
 
-		if(curTime == 3000) {
-			p.addWaypoint(new Coord(0,0));
-		}
+//		if(curTime == 3000) {
+//			p.addWaypoint(new Coord(0,0));
+//		}
 
 		return p;
 	}
@@ -189,8 +208,8 @@ public class TimeBasedMapRouteMovement extends MapBasedMovement implements
 	}
 
 	@Override
-	public TimeBasedMapRouteMovement replicate() {
-		return new TimeBasedMapRouteMovement(this);
+	public TimeBasedActivityMapRouteMovement replicate() {
+		return new TimeBasedActivityMapRouteMovement(this);
 	}
 
 	/**

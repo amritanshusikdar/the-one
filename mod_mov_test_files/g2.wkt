@@ -1,4 +1,6 @@
-# Any Point mentioned in this file must be included in the sample_map.wkt or origin.wkt file
 #LINESTRING (100 -100, 100 -200, 100 -100)
 LINESTRING (100 -100, 200 -100, 150 -150, 150 -200, 100 -100)
 #MULTILINESTRING ((100 -100, 200 -100, 100 -100),(100 -100, 200 -100, 150 -150, 100 -100))
+
+
+# Any Point mentioned in this file must be included in the sample_map.wkt or origin.wkt file

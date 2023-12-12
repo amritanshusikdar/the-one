@@ -176,6 +176,7 @@ public class TimeBasedMapRouteMovement extends MapBasedMovement implements
 			lastMapNode = route.nextStop();
 		}
 		return lastMapNode.getLocation().clone();
+//		return randomCoord();
 	}
 
 	@Override
@@ -219,8 +220,11 @@ public class TimeBasedMapRouteMovement extends MapBasedMovement implements
 	}
 
 	private Coord randomCoord() {
-		return new Coord(0,0);
+		return new Coord( rng.nextDouble() * super.getMaxX(),
+				rng.nextDouble() * super.getMaxY() );
+//		return new Coord(0,0);
 	}
+
 	protected double getSimEndTime() {
 //		final double endTime = SimScenario.getInstance().getEndTime();
 		return SimScenario.getInstance().getEndTime();

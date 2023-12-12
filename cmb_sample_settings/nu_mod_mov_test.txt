@@ -4,7 +4,7 @@ Scenario.name = MyScenario
 Scenario.endTime = 6000
 Scenario.updateInterval = 0.1
 Scenario.simulateConnections = false
-Scenario.nrofHostGroups = 1
+Scenario.nrofHostGroups = 2
 MovementModel.worldSize = 1000,1000
 Events.nrof = 0
 #GUI.UnderlayImage.fileName = mod_mov_test_files/sample_background.PNG
@@ -30,21 +30,25 @@ Group1.routeFile = mod_mov_test_files/g1.wkt
 Group1.routeType = 1
 Group1.rwpActivePeriod = 1000, 4000
 Group1.router = PassiveRouter
-
 #Group1.rwpActivePeriod = (1000, 2000, 3000, 4000)
 # Group1.waitTime = 100, 300 #this makes node to wait for given amount of secs before going to the next location
+
+# Group 2
+Group2.groupID = y
+Group2.nrofHosts = 1
+Group2.nrofInterfaces = 1
+Group2.interface1 = myInterface
+Group2.movementModel = TimeBasedMapRouteMovement
+Group2.routeFile = mod_mov_test_files/g1.wkt
+Group2.routeType = 1
+Group2.rwpActivePeriod = 1000, 4000
+Group2.router = PassiveRouter
 
 ## Map based movement -movement model specific settings
 MapBasedMovement.nrofMapFiles = 3
 MapBasedMovement.mapFile1 = mod_mov_test_files/sample_map.wkt
 MapBasedMovement.mapFile2 = mod_mov_test_files/origin.wkt
 MapBasedMovement.mapFile3 = mod_mov_test_files/end.wkt
-
-# Time-based Movement Actions
-#Group1.addMovementAction = changePath
-#changePath.startTime = 1000  # Change path at simulation time 300
-#changePath.endTime = 4000    # Continue the new path until simulation time 400
-#changePath.lineString = [(100, 200), (300, 400), (500, 600)]  # Specify the new path coordinates
 
 # Reports
 Report.nrofReports = 0

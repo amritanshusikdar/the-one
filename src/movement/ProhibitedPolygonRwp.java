@@ -126,15 +126,41 @@ extends MovementModel {
 
       ArrayList<MapNode> allNodes = new ArrayList<MapNode>();
       for (Coord c1 : this.polygon) {
-        n1 = new MapNode(c1);
+        /*n1 = new MapNode(c1);
         n1.addType(1);
-        allNodes.add(n1);
+        allNodes.add(n1);*/
 
-        if (countIntersectedEdges(this.polygon, srcCoord, c1) <= 2) {
+        if (isInside(this.polygon, new Coord(c1.getX()-10, c1.getY()-10))) {
+          n1 = new MapNode(new Coord(c1.getX()-10, c1.getY()-10));
+          n1.addType(1);
+          allNodes.add(n1);
+        }
+        else if (isInside(this.polygon, new Coord(c1.getX()-10, c1.getY()+10))) {
+          n1 = new MapNode(new Coord(c1.getX()-10, c1.getY()+10));
+          n1.addType(1);
+          allNodes.add(n1);
+        }
+        else if (isInside(this.polygon, new Coord(c1.getX()+10, c1.getY()-10))) {
+          n1 = new MapNode(new Coord(c1.getX()+10, c1.getY()-10));
+          n1.addType(1);
+          allNodes.add(n1);
+        }
+        else if (isInside(this.polygon, new Coord(c1.getX()+10, c1.getY()+10))) {
+          n1 = new MapNode(new Coord(c1.getX()+10, c1.getY()+10));
+          n1.addType(1);
+          allNodes.add(n1);
+        }
+        else {
+          n1 = new MapNode(c1);
+          n1.addType(1);
+          allNodes.add(n1);
+        }
+
+        if (countIntersectedEdges(this.polygon, srcCoord, n1.getLocation()) == 0) {
           srcNode.addNeighbor(n1);
           n1.addNeighbor(srcNode);
         }
-        if (countIntersectedEdges(this.polygon, destCoord, c1) <= 2) {
+        if (countIntersectedEdges(this.polygon, destCoord, n1.getLocation()) == 0) {
           destNode.addNeighbor(n1);
           n1.addNeighbor(destNode);
         }
@@ -143,11 +169,37 @@ extends MovementModel {
         for (Coord c2 : this.polygon) {
           if (!seen.contains(c2) && !c2.equals(c1)) {
             seen.add(c2);
-            n2 = new MapNode(c2);
+            /*n2 = new MapNode(c2);
             n2.addType(1);
-            allNodes.add(n2);
+            allNodes.add(n2);*/
 
-            if (countIntersectedEdges(this.polygon, c1, c2) <= 2) {
+            if (isInside(this.polygon, new Coord(c2.getX()-10, c2.getY()-10))) {
+              n2 = new MapNode(new Coord(c2.getX()-10, c2.getY()-10));
+              n2.addType(1);
+              allNodes.add(n2);
+            }
+            else if (isInside(this.polygon, new Coord(c2.getX()-10, c2.getY()+10))) {
+              n2 = new MapNode(new Coord(c2.getX()-10, c2.getY()+10));
+              n2.addType(1);
+              allNodes.add(n2);
+            }
+            else if (isInside(this.polygon, new Coord(c2.getX()+10, c2.getY()-10))) {
+              n2 = new MapNode(new Coord(c2.getX()+10, c2.getY()-10));
+              n2.addType(1);
+              allNodes.add(n2);
+            }
+            else if (isInside(this.polygon, new Coord(c2.getX()+10, c2.getY()+10))) {
+              n2 = new MapNode(new Coord(c2.getX()+10, c2.getY()+10));
+              n2.addType(1);
+              allNodes.add(n2);
+            }
+            else {
+              n2 = new MapNode(c2);
+              n2.addType(1);
+              allNodes.add(n2);
+            }
+
+            if (countIntersectedEdges(this.polygon, n1.getLocation(), n2.getLocation()) == 0) {
               n1.addNeighbor(n2);
               n2.addNeighbor(n1);
             }
@@ -300,7 +352,7 @@ extends MovementModel {
     final double squaredLength
         = ( L1.getX() - L0.getX() ) * ( L1.getX() - L0.getX() )
         + (L1.getY() - L0.getY() ) * (L1.getY() - L0.getY() );
-    if ( dotProduct > squaredLength + 1e-9 ) return false;
+    if ( dotProduct > squaredLength + 1e-10) return false;
 
     return true;
   }

@@ -471,6 +471,11 @@ public class DTNHost implements Comparable<DTNHost> {
 		this.destinationSet = true;
 	}
 
+	public boolean changeMovement() {
+		if (SimClock.getTime() > 1000) return true;
+        return false;
+    }
+
 	/**
 	 * Sends a message from this host to another host
 	 * @param id Identifier of the message

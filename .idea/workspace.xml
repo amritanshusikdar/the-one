@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="479a11b9-62d6-4cd7-9fd6-9130f5bc36f2" name="Changes" comment="testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/movement/TimeBasedPolygonMapRouteMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/movement/TimeBasedPolygonMapRouteMovement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmb_sample_settings/nu_mod_mov_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmb_sample_settings/nu_mod_mov_test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

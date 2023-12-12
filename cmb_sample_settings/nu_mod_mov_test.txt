@@ -22,7 +22,7 @@ myInterface.transmitSpeed = 0
 ## Group Settings
 # Group 1
 Group1.groupID = x
-Group1.nrofHosts = 1
+Group1.nrofHosts = 10
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
 Group1.movementModel = TimeBasedPolygonMapRouteMovement
@@ -37,7 +37,7 @@ Group1.router = PassiveRouter
 
 # Group 2
 Group2.groupID = y
-Group2.nrofHosts = 1
+Group2.nrofHosts = 10
 Group2.nrofInterfaces = 1
 Group2.interface1 = myInterface
 Group2.movementModel = TimeBasedPolygonMapRouteMovement
@@ -50,7 +50,7 @@ Group2.router = PassiveRouter
 
 # Group 3
 Group3.groupID = z
-Group3.nrofHosts = 1
+Group3.nrofHosts = 10
 Group3.nrofInterfaces = 1
 Group3.interface1 = myInterface
 Group3.movementModel = TimeBasedPolygonMapRouteMovement

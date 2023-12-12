@@ -65,10 +65,10 @@ public class CustomRouter extends MessageRouter {
 		String groupId = con.getOtherNode(this.getHost()).groupId;
 
 		if (con.isUp() && groupId.equals("train") && this.toTrain) {
-			this.getHost().setTarget(new Coord(1135,120));
+			this.getHost().setTarget(con.getOtherNode(this.getHost()).getLocation());
 		}
 		if (con.isUp() && groupId.equals("coffee") && this.toTrain && this.toCp) {
-			this.getHost().setCheckpoint(new Coord(1000,50));
+			this.getHost().setCheckpoint(con.getOtherNode(this.getHost()).getLocation());
 		}
 	}
 

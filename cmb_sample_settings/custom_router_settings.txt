@@ -31,7 +31,7 @@ Group1.router = CustomRouter
 Group1.waitTime = 0, 100
 Group1.routerActiveTime = 200
 Group1.trainProbability = 0.7
-Group1.cpProbability = 0.2
+Group1.cpProbability = 0.3
 
 Group2.groupID = train
 Group2.nrofHosts = 1

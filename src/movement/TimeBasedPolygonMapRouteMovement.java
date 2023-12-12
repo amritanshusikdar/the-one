@@ -133,10 +133,13 @@ public class TimeBasedPolygonMapRouteMovement extends MapBasedMovement implement
 	@Override
 	public Path getPath() {
 		double curTime = getSimCurrTime();
+		final Path p;
+		p = new Path( super.generateSpeed() );
+
 		if(curTime >= 0 && curTime <= 2000 ){ // Change here
-			System.out.println("first");
-			final Path p;
-			p = new Path( super.generateSpeed() );
+//			System.out.println("first");
+//			final Path p;
+//			p = new Path( super.generateSpeed() );
 			p.addWaypoint( this.lastWaypoint.clone() );
 
 			// Add only one point. An arbitrary number of Coords could be added to
@@ -149,13 +152,13 @@ public class TimeBasedPolygonMapRouteMovement extends MapBasedMovement implement
 			p.addWaypoint( c );
 
 			this.lastWaypoint = c;
-			System.out.println(c);
-			return p;
+//			System.out.println(c);
+//			return p;
 		}
 		else if(curTime > 2000 && curTime <= 3000 ){ // Change here
-			System.out.println("second");
-			final Path p;
-			p = new Path( super.generateSpeed() );
+//			System.out.println("second");
+//			final Path p;
+//			p = new Path( super.generateSpeed() );
 			p.addWaypoint( this.lastWaypoint.clone() );
 
 			// Add only one point. An arbitrary number of Coords could be added to
@@ -168,12 +171,12 @@ public class TimeBasedPolygonMapRouteMovement extends MapBasedMovement implement
 			p.addWaypoint( c );
 
 			this.lastWaypoint = c;
-			return p;
+//			return p;
 		}
 		else if(curTime > 3000 && curTime <= 3500 ){ // Change here
-			System.out.println("second");
-			final Path p;
-			p = new Path( super.generateSpeed() );
+//			System.out.println("second");
+//			final Path p;
+//			p = new Path( super.generateSpeed() );
 			p.addWaypoint( this.lastWaypoint.clone() );
 
 			// Add only one point. An arbitrary number of Coords could be added to
@@ -186,11 +189,13 @@ public class TimeBasedPolygonMapRouteMovement extends MapBasedMovement implement
 			p.addWaypoint( c );
 
 			this.lastWaypoint = c;
-			return p;
+//			return p;
 		}
 		else {
-			System.out.println("third");
-			Path p = new Path(generateSpeed());
+//			System.out.println("third");
+//			Path p = new Path(generateSpeed());
+//			final Path p;
+//			p = new Path( super.generateSpeed() );
 			MapNode to = route.nextStop();
 
 			List<MapNode> nodePath = pathFinder.getShortestPath(lastMapNode, to);
@@ -205,8 +210,9 @@ public class TimeBasedPolygonMapRouteMovement extends MapBasedMovement implement
 
 			lastMapNode = to;
 
-			return p;
+//			return p;
 		}
+		return p;
 	}
 
 	/**

@@ -19,7 +19,6 @@ public class CustomRouter extends MessageRouter {
 	private double cpProbability = 0.1;
 	private boolean toTrain = false;
 	private boolean toCp = false;
-
 	private Coord trainCoords = null;
 	private Coord cpCoords = null;
 
@@ -32,7 +31,6 @@ public class CustomRouter extends MessageRouter {
 		try {
 			this.cpProbability = Double.parseDouble(s.getSetting("cpProbability"));
 		} catch (Throwable ignored) {}
-		//To do: set the buffer size to a random number between 0 and 3?
 	}
 
 	/**
@@ -70,7 +68,7 @@ public class CustomRouter extends MessageRouter {
 		}
 		if (groupId.equals("coffee")) {
 			if (cpCoords == null) cpCoords = m.getFrom().getLocation();
-			this.toCp = (Math.random() < this.cpProbability * this.trainProbability);
+			this.toCp = (Math.random() < this.cpProbability);
 
 			if (this.toTrain && this.toCp) this.getHost().setCheckpoint(cpCoords);
 		}

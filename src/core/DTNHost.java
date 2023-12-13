@@ -26,7 +26,6 @@ public class DTNHost implements Comparable<DTNHost> {
 	private Coord destination;	// where is it going
 
 	private Coord target = null;
-	private final Coord defaultTarget = new Coord(0,0);
 
 	private MessageRouter router;
 	private MovementModel movement;
@@ -400,7 +399,7 @@ public class DTNHost implements Comparable<DTNHost> {
 			}
 		}
 
-		if ((int)this.location.getX() == (int)this.target.getX() && (int)this.location.getY() == (int)this.target.getY()) {
+		if (this.location.equals(this.target)) {
 			return;
 		}
 

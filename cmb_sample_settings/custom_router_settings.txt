@@ -20,7 +20,7 @@ coffeeInterface.transmitSpeed = 0
 Scenario.nrofHostGroups = 3
 
 Group1.groupID = polygon
-Group1.nrofHosts = 100
+Group1.nrofHosts = 50
 Group1.nrofInterfaces = 2
 Group1.interface1 = trainInterface
 Group1.interface2 = coffeeInterface
@@ -29,9 +29,8 @@ Group1.rwpInvert = true
 Group1.polygonFile = data/polygon.wkt
 Group1.router = CustomRouter
 Group1.waitTime = 0, 100
-Group1.routerActiveTime = 200
-Group1.trainProbability = 0.7
-Group1.cpProbability = 0.3
+Group1.trainProbability = 0.5
+Group1.cpProbability = 0.5
 
 Group2.groupID = train
 Group2.nrofHosts = 1
@@ -39,7 +38,9 @@ Group2.movementModel = StationaryMovement
 Group2.nodeLocation = 1135,120
 Group2.nrofInterfaces = 1
 Group2.interface1 = trainInterface
-Group2.router = PassiveRouter
+Group2.router = CustomAttractingRouter
+#Group2.routerOffsetTime = 500
+#Group2.routerPeriod = 1500
 
 Group3.groupID = coffee
 Group3.nrofHosts = 1
@@ -47,7 +48,9 @@ Group3.movementModel = StationaryMovement
 Group3.nodeLocation = 1000,50
 Group3.nrofInterfaces = 1
 Group3.interface1 = coffeeInterface
-Group3.router = PassiveRouter
+Group3.router = CustomAttractingRouter
+#Group3.routerOffsetTime = 500
+#Group3.routerPeriod = 1500
 
 # Reports
 Report.nrofReports = 0

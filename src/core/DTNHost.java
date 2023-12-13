@@ -26,6 +26,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	private Coord destination;	// where is it going
 
 	private Coord target = null;
+	private final Coord defaultTarget = new Coord(0,0);
 
 	private MessageRouter router;
 	private MovementModel movement;
@@ -45,9 +46,8 @@ public class DTNHost implements Comparable<DTNHost> {
 		reset();
 	}
 
-	private double routerActiveTime = 0;
 	private Coord checkpoint = null;
-	private boolean destinationSet = false;
+	private boolean destinationAlreadySet = false;
 
 	/**
 	 * Creates a new DTNHost.
@@ -392,9 +392,12 @@ public class DTNHost implements Comparable<DTNHost> {
 			return;
 		}
 
-		if (SimClock.getTime() > this.routerActiveTime && this.target != null && !this.destinationSet) {
+		if (this.target != null && !this.destinationAlreadySet) {
 			setNewDestination(this.target);
-			if (targetPath.hasNext()) this.path = this.targetPath;
+			if (targetPath.hasNext()) {
+				this.path = this.targetPath;
+				this.destinationAlreadySet = true;
+			}
 		}
 
 		if ((int)this.location.getX() == (int)this.target.getX() && (int)this.location.getY() == (int)this.target.getY()) {
@@ -468,7 +471,6 @@ public class DTNHost implements Comparable<DTNHost> {
 	private void setNewDestination(Coord target) {
 		this.targetPath = this.movement.findPath(this.getLocation(), this.checkpoint, target);
 		this.targetPath.setSpeed(1);
-		this.destinationSet = true;
 	}
 
 	public boolean changeMovement() {
@@ -576,9 +578,5 @@ public class DTNHost implements Comparable<DTNHost> {
 	 */
 	public int compareTo(DTNHost h) {
 		return this.getAddress() - h.getAddress();
-	}
-
-	public void setRouterActiveTime(double t) {
-		this.routerActiveTime = t;
 	}
 }

@@ -4,11 +4,7 @@
  */
 package routing;
 
-import core.Connection;
-import core.Coord;
-import core.Settings;
-
-import java.util.Objects;
+import core.*;
 
 /**
  * Passive router that doesn't send anything unless commanded. This is useful
@@ -24,12 +20,12 @@ public class CustomRouter extends MessageRouter {
 	private boolean toTrain = false;
 	private boolean toCp = false;
 
+	private Coord trainCoords = null;
+	private Coord cpCoords = null;
+
 	public CustomRouter(Settings s) {
 		super(s);
 
-		try {
-			this.routerActiveTime = Double.parseDouble(s.getSetting("routerActiveTime"));
-		} catch (Throwable ignored) {}
 		try {
 			this.trainProbability = Double.parseDouble(s.getSetting("trainProbability"));
 		} catch (Throwable ignored) {}
@@ -49,8 +45,8 @@ public class CustomRouter extends MessageRouter {
 
 		this.trainProbability = r.trainProbability;
 		this.cpProbability = r.cpProbability;
-		this.toTrain = (Math.random() < this.trainProbability);
-		this.toCp = (Math.random() < this.cpProbability * this.trainProbability);
+		this.trainCoords = r.trainCoords;
+		this.cpCoords = r.cpCoords;
 	}
 
 	@Override
@@ -60,16 +56,25 @@ public class CustomRouter extends MessageRouter {
 
 	@Override
 	public void changedConnection(Connection con) {
-		if (this.routerActiveTime != -1) this.getHost().setRouterActiveTime(this.routerActiveTime);
+	}
 
-		String groupId = con.getOtherNode(this.getHost()).groupId;
+	public int receiveMessage (Message m, DTNHost from) {
+		String groupId = m.getFrom().groupId;
+		if (groupId.equals("train")) {
+			if (trainCoords == null) trainCoords = m.getFrom().getLocation();
+			this.toTrain = (Math.random() < this.trainProbability);
 
-		if (con.isUp() && groupId.equals("train") && this.toTrain) {
-			this.getHost().setTarget(con.getOtherNode(this.getHost()).getLocation());
+			if (this.toTrain) this.getHost().setTarget(trainCoords);
+			if (this.toTrain && this.toCp) this.getHost().setCheckpoint(cpCoords); // sometimes the coffee shop sends its message first so we need to check it here as well
 		}
-		if (con.isUp() && groupId.equals("coffee") && this.toTrain && this.toCp) {
-			this.getHost().setCheckpoint(con.getOtherNode(this.getHost()).getLocation());
+		if (groupId.equals("coffee")) {
+			if (cpCoords == null) cpCoords = m.getFrom().getLocation();
+			this.toCp = (Math.random() < this.cpProbability * this.trainProbability);
+
+			if (this.toTrain && this.toCp) this.getHost().setCheckpoint(cpCoords);
 		}
+
+		return 0;
 	}
 
 	@Override

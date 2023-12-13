@@ -48,6 +48,6 @@ public class CustomSwitchableMovement
 
     @Override
     public MovementModel replicate() {
-        return this;
+        return new CustomSwitchableMovement(this);
     }
 }

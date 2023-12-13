@@ -58,6 +58,7 @@ public class CustomRouter extends MessageRouter {
 	public void changedConnection(Connection con) {
 	}
 
+	@Override
 	public int receiveMessage (Message m, DTNHost from) {
 		String groupId = m.getFrom().groupId;
 		if (groupId.equals("train")) {

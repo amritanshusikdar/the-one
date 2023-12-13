@@ -122,6 +122,15 @@ public class MapRouteMovement extends MapBasedMovement implements
 		return p;
 	}
 
+	public Path findPath(Coord src, Coord checkpoint, Coord dest) {
+		List<MapNode> pathNodes = pathFinder.getShortestPath(new MapNode(src), new MapNode(dest));
+		Path shortestPath = new Path();
+		for (MapNode n : pathNodes) {
+			shortestPath.addWaypoint(n.getLocation());
+		}
+		return shortestPath;
+	}
+
 	/**
 	 * Returns the first stop on the route
 	 */

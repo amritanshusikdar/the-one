@@ -16,13 +16,14 @@ myInterface.transmitSpeed = 0
 Scenario.nrofHostGroups = 1
 
 Group1.groupID = x
-Group1.nrofHosts = 5
+Group1.nrofHosts = 50
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
 Group1.movementModel = CustomSwitchableMovement
 Group1.routeFile = data/cluster/ferryroute.wkt
 Group1.routeType = 1
-Group1.router = PassiveRouter
+Group1.router = CustomRouter
+Group1.interfacePoint = 350, -533
 
 ## Map based movement -movement model specific settings
 MapBasedMovement.nrofMapFiles = 2

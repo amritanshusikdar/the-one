@@ -473,9 +473,10 @@ public class DTNHost implements Comparable<DTNHost> {
 		this.targetPath.setSpeed(1);
 	}
 
-	public boolean changeMovement() {
-		if (SimClock.getTime() > 1000) return true;
-        return false;
+	public String changeMovement() {
+		if (SimClock.getTime() > 2000) return "MRM";
+		if (SimClock.getTime() > 1000) return "PPM";
+        return "";
     }
 
 	/**

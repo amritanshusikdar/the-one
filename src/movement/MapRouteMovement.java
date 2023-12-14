@@ -144,20 +144,23 @@ public class MapRouteMovement extends MapBasedMovement implements
 			lastMapNode = route.nextStop();
 		}
 
-		return lastMapNode.getLocation().clone();
-		//return randomCoord();
+		//return lastMapNode.getLocation().clone();
+		return randomCoord();
 	}
 
-	/*private Coord randomCoord() {
-		double t = Math.random();
-		Random r = new Random();
-		int randomIndex = r.nextInt(this.allRoutes.size());
-		MapRoute route = this.allRoutes.get(randomIndex);
-		MapNode node1 = route.
-		return new Coord(
-				rng.nextDouble() * super.getMaxX(),
-				rng.nextDouble() * super.getMaxY() );
-	}*/
+	private Coord randomCoord() {
+        double t = Math.random();
+        Random r = new Random();
+        int randomIndex = r.nextInt(this.route.getStops().size());
+        MapNode node1 = this.route.getStops().get(randomIndex);
+        MapNode node2;
+        do {
+            randomIndex = r.nextInt(this.route.getStops().size());
+            node2 = this.route.getStops().get(randomIndex);
+        } while (node2.equals(node1));
+        return new Coord(t*node1.getLocation().getX() + (1-t)*node2.getLocation().getX(),
+				t*node1.getLocation().getY() + (1-t)*node2.getLocation().getY());
+    }
 
 	@Override
 	public Coord getLastLocation() {

@@ -93,8 +93,8 @@ public class SimMenuBar extends JMenuBar implements ActionListener {
 		if (settings.contains("fileName")) {
 			// create underlay image menu item only if filename is specified
 			enableBgImage = createCheckItem(pfMenu,"Show underlay image",
-					false, null);
-			enableBgImage.setSelected(settings.getBoolean(UNDERLAY_VISIBLE, false));
+					true, null);
+			enableBgImage.setSelected(settings.getBoolean(UNDERLAY_VISIBLE, true));
 		}
 
 		settings.setNameSpace(MainWindow.GUI_NS);

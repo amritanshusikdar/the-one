@@ -123,7 +123,10 @@ public class MapRouteMovement extends MapBasedMovement implements
 	}
 
 	public Path findPath(Coord src, Coord checkpoint, Coord dest) {
-		List<MapNode> pathNodes = pathFinder.getShortestPath(new MapNode(src), new MapNode(dest));
+		MapNode srcNode = this.getMap().getNodeByCoord(src);
+		MapNode destNode = this.getMap().getNodeByCoord(dest);
+
+		List<MapNode> pathNodes = pathFinder.getShortestPath(srcNode, destNode);
 		Path shortestPath = new Path();
 		for (MapNode n : pathNodes) {
 			shortestPath.addWaypoint(n.getLocation());

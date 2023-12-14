@@ -2,7 +2,6 @@ package movement;
 
 import core.Coord;
 import core.Settings;
-import movement.map.MapRoute;
 
 public class CustomSwitchableMovement
         extends MovementModel{
@@ -12,11 +11,14 @@ public class CustomSwitchableMovement
     private MovementModel movementType;
     private int[] interfaceCoord;
     private Coord interfacePoint;
+    private Coord defaultLocation;
+    private boolean switchToPPM;
+    private boolean switchToMRM;
 
     //==========================================================================//
     // API
     //==========================================================================//
-    public CustomSwitchableMovement( final Settings settings ) {
+    public CustomSwitchableMovement(final Settings settings ) {
         super( settings );
         MRM = new MapRouteMovement(settings);
         PPM = new ProhibitedPolygonRwp(settings);
@@ -24,6 +26,7 @@ public class CustomSwitchableMovement
         this.interfacePoint = new Coord(this.interfaceCoord[0], this.interfaceCoord[1]);
 
         this.movementType = MRM;
+        this.defaultLocation = new Coord(0,0);
     }
 
     public CustomSwitchableMovement( final CustomSwitchableMovement other ) {
@@ -35,25 +38,45 @@ public class CustomSwitchableMovement
         this.PPM = other.PPM;
         this.movementType = other.movementType;
         this.interfacePoint = other.interfacePoint;
+        this.defaultLocation = other.defaultLocation;
+        this.switchToPPM = false;
+        this.switchToMRM = false;
     }
     //==========================================================================//
 
     @Override
     public Path getPath() {
         String movementName = this.host.changeMovement();
+        Path path = null;
 
-        if (movementName.equals("PPM") && this.movementType != this.PPM) {
+        if (movementName.equals("PPM") && this.movementType != this.PPM && !this.switchToPPM) {
+            this.switchToPPM = true;
+            path = this.movementType.findPath(this.host.getLocation(), null, this.interfacePoint);
+            path.setSpeed(1);
+            return path;
+        }
+        else if (movementName.equals("MRM") && this.movementType != this.MRM && !this.switchToMRM) {
+            this.switchToMRM = true;
+            path = this.movementType.findPath(this.host.getLocation(), null, this.interfacePoint);
+            path.setSpeed(1);
+            return path;
+        }
+
+        if (this.switchToPPM) {
+            this.PPM.lastWaypoint = this.host.getLocation().clone();
             this.movementType = this.PPM;
-            this.getInitialLocation();      // do we actually need it?
-            return this.movementType.findPath(this.host.getLocation(), null, this.interfacePoint);
+            this.switchToPPM = false;
         }
-        else if (movementName.equals("MRM") && this.movementType != this.MRM) {
+        else if (this.switchToMRM) {
             this.movementType = this.MRM;
-            this.getInitialLocation();      // do we actually need it?
-            return this.movementType.findPath(this.host.getLocation(), null, this.interfacePoint);
+            this.switchToMRM = false;
         }
 
-        return this.movementType.getPath();
+        if (path == null) {
+            path = this.movementType.getPath();
+        }
+
+        return path;
     }
 
     @Override

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Random Waypoint Movement with a prohibited region where nodes may not move
@@ -35,7 +36,7 @@ extends MovementModel {
           new Coord( 500, 250 )
   );
 
-  private Coord lastWaypoint;
+  public Coord lastWaypoint;
   /** Inverted, i.e., only allow nodes to move inside the polygon. */
   private final boolean invert;
 

@@ -1,0 +1,164 @@
+ Settings for map route based movement in a triangle.
+
+Scenario.name = MapRouteMovement
+Scenario.endTime = 6000
+Scenario.updateInterval = 0.1
+Scenario.simulateConnections = false
+MovementModel.worldSize = 1000,1000
+Events.nrof = 0
+
+# Communication Interface
+myInterface.type = SimpleBroadcastInterface
+myInterface.transmitRange = 0
+myInterface.transmitSpeed = 0
+
+# Groups
+Scenario.nrofHostGroups = 12
+
+Group.interfacePoint = 670, 720
+
+MapBasedMovement.mapFile1 = data/cluster/custom/map8_line0.wkt
+Group1.routeFile = data/cluster/custom/map8_line0.wkt
+Group1.groupID = a
+Group1.nrofHosts = 1
+Group1.nrofInterfaces = 1
+Group1.interface1 = myInterface
+Group1.movementModel = CustomSwitchableMovement
+Group1.routeType = 1
+Group1.router = PassiveRouter
+
+MapBasedMovement.mapFile2 = data/cluster/custom/map8_line1.wkt
+Group2.routeFile = data/cluster/custom/map8_line1.wkt
+Group2.groupID = b
+Group2.nrofHosts = 1
+Group2.nrofInterfaces = 1
+Group2.interface1 = myInterface
+Group2.movementModel = CustomSwitchableMovement
+Group2.routeType = 1
+Group2.router = PassiveRouter
+
+MapBasedMovement.mapFile3 = data/cluster/custom/map8_line2.wkt
+Group3.routeFile = data/cluster/custom/map8_line2.wkt
+Group3.groupID = c
+Group3.nrofHosts = 1
+Group3.nrofInterfaces = 1
+Group3.interface1 = myInterface
+Group3.movementModel = CustomSwitchableMovement
+Group3.routeType = 1
+Group3.router = PassiveRouter
+
+MapBasedMovement.mapFile4 = data/cluster/custom/map8_line3.wkt
+Group4.routeFile = data/cluster/custom/map8_line3.wkt
+Group4.groupID = d
+Group4.nrofHosts = 1
+Group4.nrofInterfaces = 1
+Group4.interface1 = myInterface
+Group4.movementModel = CustomSwitchableMovement
+Group4.routeType = 1
+Group4.router = PassiveRouter
+
+MapBasedMovement.mapFile5 = data/cluster/custom/map8_line4.wkt
+Group5.routeFile = data/cluster/custom/map8_line4.wkt
+Group5.groupID = e
+Group5.nrofHosts = 1
+Group5.nrofInterfaces = 1
+Group5.interface1 = myInterface
+Group5.movementModel = CustomSwitchableMovement
+Group5.routeType = 1
+Group5.router = PassiveRouter
+
+MapBasedMovement.mapFile6 = data/cluster/custom/map8_line5.wkt
+Group6.routeFile = data/cluster/custom/map8_line5.wkt
+Group6.groupID = f
+Group6.nrofHosts = 1
+Group6.nrofInterfaces = 1
+Group6.interface1 = myInterface
+Group6.movementModel = CustomSwitchableMovement
+Group6.routeType = 1
+Group6.router = PassiveRouter
+
+MapBasedMovement.mapFile7 = data/cluster/custom/map8_line6.wkt
+Group7.routeFile = data/cluster/custom/map8_line6.wkt
+Group7.groupID = g
+Group7.nrofHosts = 1
+Group7.nrofInterfaces = 1
+Group7.interface1 = myInterface
+Group7.movementModel = CustomSwitchableMovement
+Group7.routeType = 1
+Group7.router = PassiveRouter
+
+MapBasedMovement.mapFile8 = data/cluster/custom/map8_line7.wkt
+Group8.routeFile = data/cluster/custom/map8_line7.wkt
+Group8.groupID = h
+Group8.nrofHosts = 1
+Group8.nrofInterfaces = 1
+Group8.interface1 = myInterface
+Group8.movementModel = CustomSwitchableMovement
+Group8.routeType = 1
+Group8.router = PassiveRouter
+
+MapBasedMovement.mapFile9 = data/cluster/custom/map8_line8.wkt
+Group9.routeFile = data/cluster/custom/map8_line8.wkt
+Group9.groupID = i
+Group9.nrofHosts = 1
+Group9.nrofInterfaces = 1
+Group9.interface1 = myInterface
+Group9.movementModel = CustomSwitchableMovement
+Group9.routeType = 1
+Group9.router = PassiveRouter
+
+MapBasedMovement.mapFile10 = data/cluster/custom/map8_line9.wkt
+Group10.routeFile = data/cluster/custom/map8_line9.wkt
+Group10.groupID = j
+Group10.nrofHosts = 1
+Group10.nrofInterfaces = 1
+Group10.interface1 = myInterface
+Group10.movementModel = CustomSwitchableMovement
+Group10.routeType = 1
+Group10.router = PassiveRouter
+
+MapBasedMovement.mapFile11 = data/cluster/custom/map8_line10.wkt
+Group11.routeFile = data/cluster/custom/map8_line10.wkt
+Group11.groupID = k
+Group11.nrofHosts = 1
+Group11.nrofInterfaces = 1
+Group11.interface1 = myInterface
+Group11.movementModel = CustomSwitchableMovement
+Group11.routeType = 1
+Group11.router = PassiveRouter
+
+MapBasedMovement.mapFile12 = data/cluster/custom/map8_line11.wkt
+Group12.routeFile = data/cluster/custom/map8_line11.wkt
+Group12.groupID = l
+Group12.nrofHosts = 1
+Group12.nrofInterfaces = 1
+Group12.interface1 = myInterface
+Group12.movementModel = CustomSwitchableMovement
+Group12.routeType = 1
+Group12.router = PassiveRouter
+
+MapBasedMovement.mapFile13 = data/cluster/custom/map8_connecting_line0.wkt
+MapBasedMovement.mapFile14 = data/cluster/custom/map8_connecting_line1.wkt
+MapBasedMovement.mapFile15 = data/cluster/custom/map8_connecting_line2.wkt
+MapBasedMovement.mapFile16 = data/cluster/custom/map8_connecting_line3.wkt
+MapBasedMovement.mapFile17 = data/cluster/custom/map8_connecting_line4.wkt
+MapBasedMovement.mapFile18 = data/cluster/custom/map8_connecting_line5.wkt
+MapBasedMovement.mapFile19 = data/cluster/custom/map8_connecting_line6.wkt
+MapBasedMovement.mapFile20 = data/cluster/custom/map8_connecting_line7.wkt
+MapBasedMovement.mapFile21 = data/cluster/custom/map8_connecting_line8.wkt
+MapBasedMovement.mapFile22 = data/cluster/custom/map8_connecting_line9.wkt
+MapBasedMovement.mapFile23 = data/cluster/custom/map8_connecting_line10.wkt
+MapBasedMovement.mapFile24 = data/cluster/custom/map8_connecting_line11.wkt
+MapBasedMovement.mapFile25 = data/cluster/custom/map8_connecting_line12.wkt
+MapBasedMovement.mapFile26 = data/cluster/custom/map8_polygon0.wkt
+MapBasedMovement.nrofMapFiles = 26
+
+Report.nrofReports = 1
+Report.report1 = FlightLengthReport
+
+Report.reportDir = reports
+
+
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/map.png
+GUI.UnderlayImage.offset = 0,-350

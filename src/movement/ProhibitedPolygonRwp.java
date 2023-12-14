@@ -353,7 +353,7 @@ extends MovementModel {
     final double squaredLength
         = ( L1.getX() - L0.getX() ) * ( L1.getX() - L0.getX() )
         + (L1.getY() - L0.getY() ) * (L1.getY() - L0.getY() );
-    if ( dotProduct > squaredLength + 1e-10) return false;
+    if ( dotProduct > squaredLength + 1e-8) return false;
 
     return true;
   }

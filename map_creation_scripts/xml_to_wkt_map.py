@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 import sys
 import os
 import math
+FOLDER = "map_creation_scripts/map_files/"
 
 
 def parse_xml_to_wkt(xml_file_path):
@@ -104,15 +105,14 @@ if linestrings:
         with open(filename_without_extension + f"_line{i}.wkt", 'w') as file:
             file.write(linestrings[i])
         # Print text to copy directly into config file
-        print(f"MapBasedMovement.mapFile{map_file_counter} = data/cluster/"
+        print(f"MapBasedMovement.mapFile{map_file_counter} = {FOLDER}"
               + filename_without_extension + f"_line{i}.wkt")
-        print(f"Group{i+1}.movementModel = MapRouteMovement")
-        print(f"Group{i+1}.routeFile = data/cluster/" + filename_without_extension + f"_line{i}.wkt")
+        print(f"Group{i+1}.routeFile = {FOLDER}" + filename_without_extension + f"_line{i}.wkt")
         print(f"Group{i+1}.groupID = " + chr(ord('a') + i))
         print(f"Group{i+1}.nrofHosts = 1")
         print(f"Group{i+1}.nrofInterfaces = 1")
         print(f"Group{i+1}.interface1 = myInterface")
-        print(f"Group{i+1}.movementModel = MapRouteMovement")
+        print(f"Group{i+1}.movementModel = CustomSwitchableMovement")
         print(f"Group{i+1}.routeType = 1")
         print(f"Group{i+1}.router = PassiveRouter")
         map_file_counter += 1
@@ -124,7 +124,7 @@ if connecting_linestrings:
         # Output linestring file
         with open(filename_without_extension + f"_connecting_line{i}.wkt", 'w') as file:
             file.write(connecting_linestrings[i])
-        print(f"MapBasedMovement.mapFile{map_file_counter} = data/cluster/"
+        print(f"MapBasedMovement.mapFile{map_file_counter} = {FOLDER}"
               + filename_without_extension + f"_connecting_line{i}.wkt")
         map_file_counter += 1
 
@@ -135,7 +135,7 @@ if polygons:
         # Output linestring file
         with open(filename_without_extension + f"_polygon{i}.wkt", 'w') as file:
             file.write(polygons[i])
-        print(f"MapBasedMovement.mapFile{map_file_counter} = data/cluster/"
+        print(f"MapBasedMovement.mapFile{map_file_counter} = {FOLDER}"
               + filename_without_extension + f"_polygon{i}.wkt")
         map_file_counter += 1
 print(f"MapBasedMovement.nrofMapFiles = {map_file_counter - 1}")

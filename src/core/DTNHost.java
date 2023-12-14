@@ -6,6 +6,7 @@ package core;
 
 import movement.MovementModel;
 import movement.Path;
+import movement.ProhibitedPolygonRwp;
 import routing.MessageRouter;
 import routing.util.RoutingInfo;
 
@@ -47,6 +48,7 @@ public class DTNHost implements Comparable<DTNHost> {
 
 	private Coord checkpoint = null;
 	private boolean destinationAlreadySet = false;
+	private boolean changeMovementType = false;
 
 	/**
 	 * Creates a new DTNHost.
@@ -391,12 +393,8 @@ public class DTNHost implements Comparable<DTNHost> {
 			return;
 		}
 
-		if (this.target != null && !this.destinationAlreadySet) {
+		if (this.target != null && !this.destinationAlreadySet && !this.target.equals(new Coord(0,0))) {
 			setNewDestination(this.target);
-			if (targetPath.hasNext()) {
-				this.path = this.targetPath;
-				this.destinationAlreadySet = true;
-			}
 		}
 
 		if (this.location.equals(this.target)) {
@@ -461,20 +459,30 @@ public class DTNHost implements Comparable<DTNHost> {
 
 	public void setTarget(Coord coords) {
 		this.target = coords;
+		this.changeMovementType = true;
 	}
 
 	public void setCheckpoint(Coord coords) {
 		this.checkpoint = coords;
 	}
 
-	private void setNewDestination(Coord target) {
-		this.targetPath = this.movement.findPath(this.getLocation(), this.checkpoint, target);
-		this.targetPath.setSpeed(1);
+	public void setNewDestination(Coord target) {
+		if (!this.movement.isSwitchable()) {
+			this.destination = null;
+			this.targetPath = this.movement.findPath(this.getLocation(), this.checkpoint, target);
+			this.targetPath.setSpeed(1);
+			if (targetPath.hasNext()) {
+				this.path = this.targetPath;
+				this.destinationAlreadySet = true;
+			}
+		}
 	}
 
 	public String changeMovement() {
-		if (SimClock.getTime() > 1000) return "MRM";
-		if (SimClock.getTime() > 200) return "PPM";
+		if (this.changeMovementType) {
+			this.changeMovementType = false;
+			return "PPM";
+		}
         return "";
     }
 

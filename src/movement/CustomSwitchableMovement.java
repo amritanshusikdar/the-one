@@ -14,6 +14,7 @@ public class CustomSwitchableMovement
     private Coord defaultLocation;
     private boolean switchToPPM;
     private boolean switchToMRM;
+    private boolean isSwitchable = true;
 
     //==========================================================================//
     // API
@@ -65,7 +66,12 @@ public class CustomSwitchableMovement
         if (this.switchToPPM) {
             this.PPM.lastWaypoint = this.host.getLocation().clone();
             this.movementType = this.PPM;
+
+            this.isSwitchable = false;
             this.switchToPPM = false;
+
+            this.getHost().setNewDestination(new Coord(1135, 120));
+            path = this.host.getPath();
         }
         else if (this.switchToMRM) {
             this.movementType = this.MRM;
@@ -80,6 +86,11 @@ public class CustomSwitchableMovement
     }
 
     @Override
+    public Path findPath(Coord src, Coord cp, Coord dest) {
+        return this.movementType.findPath(src, cp, dest);
+    }
+
+    @Override
     public Coord getInitialLocation() {
         return this.movementType.getInitialLocation();
     }
@@ -87,5 +98,9 @@ public class CustomSwitchableMovement
     @Override
     public MovementModel replicate() {
         return new CustomSwitchableMovement(this);
+    }
+
+    public boolean isSwitchable() {
+        return this.isSwitchable;
     }
 }

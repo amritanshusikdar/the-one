@@ -288,4 +288,8 @@ public abstract class MovementModel {
 	public Path findPath(Coord src, Coord checkpoint, Coord dest) {
 		return new Path();
 	}
+
+	public boolean isSwitchable() {
+		return false;
+	}
 }

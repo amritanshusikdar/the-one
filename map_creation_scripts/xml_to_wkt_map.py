@@ -24,8 +24,6 @@ def parse_xml_to_wkt(xml_file_path):
     polygons = []
     connecting_linestrings = []
     closest_distance_to_origin = 100000000
-    x_offset = 0
-    y_offset = 0
 
     tree = ET.parse(xml_file_path)
     root = tree.getroot()
@@ -44,8 +42,8 @@ def parse_xml_to_wkt(xml_file_path):
 
             if source_point is not None and target_point is not None:
                 # 1000 - in order to rotate lines correctly
-                x1, y1 = int(source_point.get('x')) + x_offset, (1000 - int(source_point.get('y'))) + y_offset
-                x2, y2 = int(target_point.get('x')) + x_offset, (1000 - int(target_point.get('y'))) + y_offset
+                x1, y1 = int(source_point.get('x')), (int(source_point.get('y')))
+                x2, y2 = int(target_point.get('x')), (int(target_point.get('y')))
 
                 # For each point this will check if it is closer to the origin than all other points that came before
                 distance_to_origin = math.sqrt(x1 ** 2 + y1 ** 2)
@@ -60,7 +58,7 @@ def parse_xml_to_wkt(xml_file_path):
                     closest_x = x2
                     closest_y = y2
 
-                linestring = f"LINESTRING ({x1} {y1}, {x2} {y2})"
+                linestring = f"LINESTRING ({x1} -{y1}, {x2} -{y2})"
                 # The polygon is usually defined together with a line that is just made up of two identical points.
                 # We want to ignore that line so that it does not have to be connected to the other lines
                 if x1 != x2 or y1 != y2:
@@ -72,7 +70,7 @@ def parse_xml_to_wkt(xml_file_path):
             # Geometry contains coordinates for a polygon
             if points_array is not None:
                 array_points = [(point.get('x'), point.get('y')) for point in points_array.findall('mxPoint')]
-                polygon = ", ".join([f"{x} {y}" for x, y in array_points])
+                polygon = ", ".join([f"{x} -{y}" for x, y in array_points])
                 polygons.append(f"POLYGON(({polygon}))")
 
 if len(sys.argv) != 2 or sys.argv[1]=="-h":
@@ -84,8 +82,8 @@ xml_file_path = sys.argv[1]
 
 parse_xml_to_wkt(xml_file_path)
 
-# Append supporting line
-linestring = f"LINESTRING (0 0, {closest_x} {closest_y})"
+# Append supporting line so that the image underlay has the correct position
+linestring = f"LINESTRING (0 0, {closest_x} -{closest_y})"
 connecting_linestrings.append(linestring)
 
 # Extract filename from filepath given by user

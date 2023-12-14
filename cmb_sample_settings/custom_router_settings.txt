@@ -53,8 +53,9 @@ Group3.router = CustomAttractingRouter
 #Group3.routerPeriod = 1500
 
 # Reports
-Report.nrofReports = 0
+Report.nrofReports = 1
 Report.reportDir = reports
+Report.report1 = EventLogReport
 
 ## GUI settings
 

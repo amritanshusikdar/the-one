@@ -33,7 +33,7 @@ public class SimMap implements Serializable {
 		this.offset = new Coord(0,0);
 		this.nodes = new ArrayList<MapNode>(nodes.values());
 		this.nodesMap = nodes;
-		this.isMirrored = true;
+		this.isMirrored = false;
 		setBounds();
 	}
 

@@ -473,7 +473,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	}
 
 	public String changeMovement() {
-		if (SimClock.getTime() > 2000) return "MRM";
+		if (SimClock.getTime() > 3500) return "MRM";
 		if (SimClock.getTime() > 1000) return "PPM";
         return "";
     }

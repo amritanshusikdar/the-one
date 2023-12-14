@@ -5,6 +5,7 @@
 package movement;
 
 import java.util.List;
+import java.util.Random;
 
 import core.SettingsError;
 import movement.map.DijkstraPathFinder;
@@ -144,7 +145,19 @@ public class MapRouteMovement extends MapBasedMovement implements
 		}
 
 		return lastMapNode.getLocation().clone();
+		//return randomCoord();
 	}
+
+	/*private Coord randomCoord() {
+		double t = Math.random();
+		Random r = new Random();
+		int randomIndex = r.nextInt(this.allRoutes.size());
+		MapRoute route = this.allRoutes.get(randomIndex);
+		MapNode node1 = route.
+		return new Coord(
+				rng.nextDouble() * super.getMaxX(),
+				rng.nextDouble() * super.getMaxY() );
+	}*/
 
 	@Override
 	public Coord getLastLocation() {

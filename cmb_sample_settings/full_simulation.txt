@@ -25,8 +25,8 @@ Scenario.nrofHostGroups = 15
 Group.interfacePoint = 610, 560
 Group.polygonFile = map_creation_scripts/map_files/map8_polygon0.wkt
 Group.rwpInvert = true
-Group.trainProbability = 0.3
-Group.cpProbability = 0.2
+Group.trainProbability = 0.2
+Group.cpProbability = 0.1
 
 MapBasedMovement.mapFile1 = map_creation_scripts/map_files/map8_line0.wkt
 Group1.routeFile = map_creation_scripts/map_files/map8_line0.wkt

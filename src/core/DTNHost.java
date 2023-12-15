@@ -486,6 +486,10 @@ public class DTNHost implements Comparable<DTNHost> {
         return "";
     }
 
+	public Coord getTarget() {
+		return this.target.clone();
+	}
+
 	/**
 	 * Sends a message from this host to another host
 	 * @param id Identifier of the message

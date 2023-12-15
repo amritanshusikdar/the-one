@@ -70,7 +70,7 @@ public class CustomSwitchableMovement
             this.isSwitchable = false;
             this.switchToPPM = false;
 
-            this.host.setNewDestination(this.host.getTarget());
+            this.host.setNewDestination(this.host.getTargetCoords());
             path = this.host.getPath();
         }
         else if (this.switchToMRM) {

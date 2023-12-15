@@ -25,7 +25,7 @@ Scenario.nrofHostGroups = 15
 Group.interfacePoint = 610, 560
 Group.polygonFile = map_creation_scripts/map_files/map8_polygon0.wkt
 Group.rwpInvert = true
-Group.trainProbability = 0.2
+Group.trainProbability = 0.4
 Group.cpProbability = 0.1
 
 MapBasedMovement.mapFile1 = map_creation_scripts/map_files/map8_line0.wkt
@@ -185,6 +185,7 @@ Group13.interface1 = trainInterface
 Group13.router = CustomAttractingRouter
 #Group13.routerOffsetTime = 500
 #Group13.routerPeriod = 1500
+#Group13.numberOfSits = 100
 
 Group14.groupID = coffee
 Group14.nrofHosts = 1

@@ -21,6 +21,8 @@ public class CustomRouter extends MessageRouter {
 	private boolean toCp = false;
 	private Coord trainCoords = null;
 	private Coord cpCoords = null;
+	private DTNHost trainHost;
+	private boolean presenceNotified = false;
 
 	public CustomRouter(Settings s) {
 		super(s);
@@ -49,6 +51,13 @@ public class CustomRouter extends MessageRouter {
 
 	@Override
 	public void update() {
+		if (this.getHost().getIsArrived() && !this.presenceNotified && !this.getHost().getIsGone()) {
+			String m = "+1";
+			addToMessages(new Message(this.getHost(), this.trainHost, m, m.length()), true);
+			sendMessage(m, this.trainHost);
+			this.presenceNotified = true;
+		}
+
 		super.update();
 	}
 
@@ -59,15 +68,30 @@ public class CustomRouter extends MessageRouter {
 	@Override
 	public int receiveMessage (Message m, DTNHost from) {
 		String groupId = m.getFrom().groupId;
-		if (groupId.equals("train")) {
-			if (trainCoords == null) trainCoords = m.getFrom().getLocation();
+		if (groupId.equals("train") && !m.toString().equals("no places remaining") && !m.toString().equals("places remaining")) {
+			if (this.trainCoords == null) {
+				this.trainCoords = from.getLocation();
+				this.trainHost = from;
+			}
 			this.toTrain = (Math.random() < this.trainProbability);
 
-			if (this.toTrain) this.getHost().setTarget(trainCoords);
+			if (this.toTrain) {
+				this.getHost().setTargetCoords(trainCoords);
+				this.presenceNotified = false;
+			}
 			if (this.toTrain && this.toCp) this.getHost().setCheckpoint(cpCoords); // sometimes the coffee shop sends its message first so we need to check it here as well
 		}
+		else if (groupId.equals("train") && m.toString().equals("no places remaining")) {
+			this.getHost().setTrainFull(true);
+			this.getHost().setTargetCoords(new Coord(0,0));
+			this.getHost().setDestinationAlreadySet(false);
+		}
+		else if (groupId.equals("train") && m.toString().equals("places remaining")) {
+			this.getHost().setTrainFull(false);
+			this.getHost().setIsGone(true);
+		}
 		if (groupId.equals("coffee")) {
-			if (cpCoords == null) cpCoords = m.getFrom().getLocation();
+			if (cpCoords == null) cpCoords = from.getLocation();
 			this.toCp = (Math.random() < this.cpProbability);
 
 			if (this.toTrain && this.toCp) this.getHost().setCheckpoint(cpCoords);

@@ -6,7 +6,6 @@ package core;
 
 import movement.MovementModel;
 import movement.Path;
-import movement.ProhibitedPolygonRwp;
 import routing.MessageRouter;
 import routing.util.RoutingInfo;
 
@@ -26,7 +25,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	private Coord location; 	// where is the host
 	private Coord destination;	// where is it going
 
-	private Coord target = null;
+	private Coord targetCoords = null;
 
 	private MessageRouter router;
 	private MovementModel movement;
@@ -49,6 +48,9 @@ public class DTNHost implements Comparable<DTNHost> {
 	private Coord checkpoint = null;
 	private boolean destinationAlreadySet = false;
 	private boolean changeMovementType = false;
+	private boolean trainFull = false;
+	private boolean arrivedToTarget = false;
+	private boolean isGone = false;
 
 	/**
 	 * Creates a new DTNHost.
@@ -91,7 +93,7 @@ public class DTNHost implements Comparable<DTNHost> {
 		setRouter(mRouterProto.replicate());
 
 		this.location = movement.getInitialLocation();
-		this.target = new Coord(0,0);
+		this.targetCoords = new Coord(0,0);
 
 		this.nextTimeToMove = movement.nextPathAvailable();
 		this.path = null;
@@ -393,12 +395,16 @@ public class DTNHost implements Comparable<DTNHost> {
 			return;
 		}
 
-		if (this.target != null && !this.destinationAlreadySet && !this.target.equals(new Coord(0,0))) {
-			setNewDestination(this.target);
+		if (this.targetCoords != null && !this.destinationAlreadySet && !this.targetCoords.equals(new Coord(0,0))) {
+			setNewDestination(this.targetCoords);
 		}
 
-		if (this.location.equals(this.target)) {
-			return;
+		if (this.location.equals(this.targetCoords)) {
+			if (this.isGone) return ;	// if the node is in a train which is already gone, then don't move
+			if (!this.trainFull){		// if the train is not full, then the node can get in it (=stop moving)
+				this.arrivedToTarget = true;
+				return ;
+			}
 		}
 
 		if (this.destination == null) {
@@ -457,8 +463,8 @@ public class DTNHost implements Comparable<DTNHost> {
 		return true;
 	}
 
-	public void setTarget(Coord coords) {
-		this.target = coords;
+	public void setTargetCoords(Coord coords) {
+		this.targetCoords = coords;
 		this.changeMovementType = true;
 	}
 
@@ -486,8 +492,28 @@ public class DTNHost implements Comparable<DTNHost> {
         return "";
     }
 
-	public Coord getTarget() {
-		return this.target.clone();
+	public Coord getTargetCoords() {
+		return this.targetCoords.clone();
+	}
+
+	public void setTrainFull(boolean b) {
+		this.trainFull = b;
+	}
+
+	public boolean getIsArrived() {
+		return this.arrivedToTarget;
+	}
+
+	public boolean getIsGone() {
+		return this.isGone;
+	}
+
+	public void setIsGone(boolean b) {
+		this.isGone = b;
+	}
+
+	public void setDestinationAlreadySet(boolean b) {
+		this.destinationAlreadySet = b;
 	}
 
 	/**

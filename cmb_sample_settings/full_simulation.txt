@@ -20,7 +20,7 @@ coffeeInterface.transmitSpeed = 0
 
 
 # Groups
-Scenario.nrofHostGroups = 15
+Scenario.nrofHostGroups = 17
 
 Group.interfacePoint = 610, 560
 Group.polygonFile = map_creation_scripts/map_files/map8_polygon0.wkt
@@ -205,6 +205,22 @@ Group15.interface2 = coffeeInterface
 Group15.movementModel = ProhibitedPolygonRwp
 Group15.router = CustomRouter
 
+Group16.groupID = sitPlacesInHall
+Group16.nrofHosts = 10
+Group16.nrofInterfaces = 0
+Group16.movementModel = ProhibitedPolygonRwp
+Group16.router = PassiveRouter
+Group16.activeTimes = 6000, 6000
+Group16.polygonFile = map_creation_scripts/map_files/map8_polygon1.wkt
+
+Group17.groupID = library
+Group17.nrofHosts = 20
+Group17.nrofInterfaces = 0
+Group17.movementModel = ProhibitedPolygonRwp
+Group17.router = PassiveRouter
+Group17.activeTimes = 6000, 6000
+Group17.polygonFile = map_creation_scripts/map_files/map8_polygon2.wkt
+
 
 Report.nrofReports = 1
 Report.report1 = FlightLengthReport
@@ -215,3 +231,7 @@ Report.reportDir = reports
 # GUI underlay image settings
 GUI.UnderlayImage.fileName = data/map.png
 GUI.UnderlayImage.offset = 0,0
+GUI.showNodeNameStrings = false
+GUI.showNodeRadioCoverages = false
+GUI.showNodeConnections = false
+GUI.show = true;

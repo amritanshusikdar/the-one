@@ -1,0 +1,238 @@
+ Settings for map route based movement in a triangle.
+
+Scenario.name = FullSimulation
+Scenario.endTime = 4000
+Scenario.updateInterval = 0.1
+Scenario.simulateConnections = true
+MovementModel.worldSize = 2000,2000
+Events.nrof = 0
+
+# Communication Interfaces
+trainInterface.type = HubInterface
+trainInterface.hubGroups = train
+trainInterface.transmitRange = 2000
+trainInterface.transmitSpeed = 0
+
+coffeeInterface.type = HubInterface
+coffeeInterface.hubGroups = coffee
+coffeeInterface.transmitRange = 2000
+coffeeInterface.transmitSpeed = 0
+
+
+# Groups
+Scenario.nrofHostGroups = 17
+
+Group.interfacePoint = 610, 560
+Group.polygonFile = map_creation_scripts/map_files/map8_polygon0.wkt
+Group.rwpInvert = true
+Group.trainProbability = 0.15
+Group.cpProbability = 0.05
+
+MapBasedMovement.mapFile1 = map_creation_scripts/map_files/map8_line0.wkt
+Group1.routeFile = map_creation_scripts/map_files/map8_line0.wkt
+Group1.groupID = throughTheHall
+Group1.nrofHosts = 30
+Group1.nrofInterfaces = 2
+Group1.interface1 = trainInterface
+Group1.interface2 = coffeeInterface
+Group1.movementModel = CustomSwitchableMovement
+Group1.routeType = 1
+Group1.router = CustomRouter
+
+MapBasedMovement.mapFile2 = map_creation_scripts/map_files/map8_line1.wkt
+Group2.routeFile = map_creation_scripts/map_files/map8_line1.wkt
+Group2.groupID = finger1
+Group2.nrofHosts = 10
+Group2.nrofInterfaces = 2
+Group2.interface1 = trainInterface
+Group2.interface2 = coffeeInterface
+Group2.movementModel = CustomSwitchableMovement
+Group2.routeType = 1
+Group2.router = CustomRouter
+
+MapBasedMovement.mapFile3 = map_creation_scripts/map_files/map8_line2.wkt
+Group3.routeFile = map_creation_scripts/map_files/map8_line2.wkt
+Group3.groupID = finger2
+Group3.nrofHosts = 10
+Group3.nrofInterfaces = 2
+Group3.interface1 = trainInterface
+Group3.interface2 = coffeeInterface
+Group3.movementModel = CustomSwitchableMovement
+Group3.routeType = 1
+Group3.router = CustomRouter
+
+MapBasedMovement.mapFile4 = map_creation_scripts/map_files/map8_line3.wkt
+Group4.routeFile = map_creation_scripts/map_files/map8_line3.wkt
+Group4.groupID = finger3
+Group4.nrofHosts = 10
+Group4.nrofInterfaces = 2
+Group4.interface1 = trainInterface
+Group4.interface2 = coffeeInterface
+Group4.movementModel = CustomSwitchableMovement
+Group4.routeType = 1
+Group4.router = CustomRouter
+
+MapBasedMovement.mapFile5 = map_creation_scripts/map_files/map8_line4.wkt
+Group5.routeFile = map_creation_scripts/map_files/map8_line4.wkt
+Group5.groupID = finger4
+Group5.nrofHosts = 10
+Group5.nrofInterfaces = 2
+Group5.interface1 = trainInterface
+Group5.interface2 = coffeeInterface
+Group5.movementModel = CustomSwitchableMovement
+Group5.routeType = 1
+Group5.router = CustomRouter
+
+MapBasedMovement.mapFile6 = map_creation_scripts/map_files/map8_line5.wkt
+Group6.routeFile = map_creation_scripts/map_files/map8_line5.wkt
+Group6.groupID = finger5
+Group6.nrofHosts = 10
+Group6.nrofInterfaces = 2
+Group6.interface1 = trainInterface
+Group6.interface2 = coffeeInterface
+Group6.movementModel = CustomSwitchableMovement
+Group6.routeType = 1
+Group6.router = CustomRouter
+
+MapBasedMovement.mapFile7 = map_creation_scripts/map_files/map8_line6.wkt
+Group7.routeFile = map_creation_scripts/map_files/map8_line6.wkt
+Group7.groupID = finger6
+Group7.nrofHosts = 10
+Group7.nrofInterfaces = 2
+Group7.interface1 = trainInterface
+Group7.interface2 = coffeeInterface
+Group7.movementModel = CustomSwitchableMovement
+Group7.routeType = 1
+Group7.router = CustomRouter
+
+MapBasedMovement.mapFile8 = map_creation_scripts/map_files/map8_line7.wkt
+Group8.routeFile = map_creation_scripts/map_files/map8_line7.wkt
+Group8.groupID = finger7
+Group8.nrofHosts = 10
+Group8.nrofInterfaces = 2
+Group8.interface1 = trainInterface
+Group8.interface2 = coffeeInterface
+Group8.movementModel = CustomSwitchableMovement
+Group8.routeType = 1
+Group8.router = CustomRouter
+
+MapBasedMovement.mapFile9 = map_creation_scripts/map_files/map8_line8.wkt
+Group9.routeFile = map_creation_scripts/map_files/map8_line8.wkt
+Group9.groupID = finger8
+Group9.nrofHosts = 10
+Group9.nrofInterfaces = 2
+Group9.interface1 = trainInterface
+Group9.interface2 = coffeeInterface
+Group9.movementModel = CustomSwitchableMovement
+Group9.routeType = 1
+Group9.router = CustomRouter
+
+MapBasedMovement.mapFile10 = map_creation_scripts/map_files/map8_line9.wkt
+Group10.routeFile = map_creation_scripts/map_files/map8_line9.wkt
+Group10.groupID = finger9
+Group10.nrofHosts = 10
+Group10.nrofInterfaces = 2
+Group10.interface1 = trainInterface
+Group10.interface2 = coffeeInterface
+Group10.movementModel = CustomSwitchableMovement
+Group10.routeType = 1
+Group10.router = CustomRouter
+
+MapBasedMovement.mapFile11 = map_creation_scripts/map_files/map8_line10.wkt
+Group11.routeFile = map_creation_scripts/map_files/map8_line10.wkt
+Group11.groupID = finger10
+Group11.nrofHosts = 10
+Group11.nrofInterfaces = 2
+Group11.interface1 = trainInterface
+Group11.interface2 = coffeeInterface
+Group11.movementModel = CustomSwitchableMovement
+Group11.routeType = 1
+Group11.router = CustomRouter
+
+MapBasedMovement.mapFile12 = map_creation_scripts/map_files/map8_line11.wkt
+Group12.routeFile = map_creation_scripts/map_files/map8_line11.wkt
+Group12.groupID = rechnerhalle
+Group12.nrofHosts = 30
+Group12.nrofInterfaces = 2
+Group12.interface1 = trainInterface
+Group12.interface2 = coffeeInterface
+Group12.movementModel = CustomSwitchableMovement
+Group12.routeType = 1
+Group12.router = CustomRouter
+Group12.waitTime = 0, 100
+
+MapBasedMovement.mapFile13 = map_creation_scripts/map_files/map8_connecting_line0.wkt
+MapBasedMovement.mapFile14 = map_creation_scripts/map_files/map8_connecting_line1.wkt
+MapBasedMovement.mapFile15 = map_creation_scripts/map_files/map8_connecting_line2.wkt
+MapBasedMovement.mapFile16 = map_creation_scripts/map_files/map8_connecting_line3.wkt
+MapBasedMovement.mapFile17 = map_creation_scripts/map_files/map8_connecting_line4.wkt
+MapBasedMovement.mapFile18 = map_creation_scripts/map_files/map8_connecting_line5.wkt
+MapBasedMovement.mapFile19 = map_creation_scripts/map_files/map8_connecting_line6.wkt
+MapBasedMovement.mapFile20 = map_creation_scripts/map_files/map8_connecting_line7.wkt
+MapBasedMovement.mapFile21 = map_creation_scripts/map_files/map8_connecting_line8.wkt
+MapBasedMovement.mapFile22 = map_creation_scripts/map_files/map8_connecting_line9.wkt
+MapBasedMovement.mapFile23 = map_creation_scripts/map_files/map8_connecting_line10.wkt
+MapBasedMovement.mapFile24 = map_creation_scripts/map_files/map8_connecting_line11.wkt
+MapBasedMovement.mapFile25 = map_creation_scripts/map_files/map8_connecting_line12.wkt
+MapBasedMovement.mapFile26 = map_creation_scripts/map_files/map8_polygon0.wkt
+MapBasedMovement.nrofMapFiles = 26
+
+Group13.groupID = train
+Group13.nrofHosts = 1
+Group13.movementModel = StationaryMovement
+Group13.nodeLocation = 1135,120
+Group13.nrofInterfaces = 1
+Group13.interface1 = trainInterface
+Group13.router = CustomAttractingRouter
+Group13.routerOffsetTime = 120
+Group13.routerPeriod = 600
+Group13.numberOfSits = 17
+
+Group14.groupID = coffee
+Group14.nrofHosts = 1
+Group14.movementModel = StationaryMovement
+Group14.nodeLocation = 1000,50
+Group14.nrofInterfaces = 1
+Group14.interface1 = coffeeInterface
+Group14.router = CustomAttractingRouter
+Group14.routerOffsetTime = 120
+Group14.routerPeriod = 600
+
+Group15.groupID = outside
+Group15.nrofHosts = 20
+Group15.nrofInterfaces = 2
+Group15.interface1 = trainInterface
+Group15.interface2 = coffeeInterface
+Group15.movementModel = ProhibitedPolygonRwp
+Group15.router = CustomRouter
+
+Group16.groupID = sitPlacesInHall
+Group16.nrofHosts = 20
+Group16.nrofInterfaces = 0
+Group16.movementModel = ProhibitedPolygonRwp
+Group16.router = PassiveRouter
+Group16.activeTimes = 4000, 4000
+Group16.polygonFile = map_creation_scripts/map_files/map8_polygon1.wkt
+
+Group17.groupID = library
+Group17.nrofHosts = 30
+Group17.nrofInterfaces = 0
+Group17.movementModel = ProhibitedPolygonRwp
+Group17.router = PassiveRouter
+Group17.activeTimes = 4000, 4000
+Group17.polygonFile = map_creation_scripts/map_files/map8_polygon2.wkt
+
+
+Report.nrofReports = 1
+Report.report1 = FlightLengthReport
+
+Report.reportDir = reports
+
+
+# GUI underlay image settings
+GUI.UnderlayImage.fileName = data/map.png
+GUI.UnderlayImage.offset = 0,0
+GUI.showNodeNameStrings = false
+GUI.showNodeRadioCoverages = false
+GUI.showNodeConnections = false
+GUI.show = true;

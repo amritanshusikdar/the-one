@@ -67,5 +67,8 @@ MapBasedMovement.mapFile1 = mod_mov_test_files/sample_map.wkt
 MapBasedMovement.mapFile2 = mod_mov_test_files/origin.wkt
 MapBasedMovement.mapFile3 = mod_mov_test_files/end.wkt
 
+GUI.UnderlayImage.fileName = data/map.png
+GUI.UnderlayImage.offset = 0,0
+
 # Reports
 Report.nrofReports = 0

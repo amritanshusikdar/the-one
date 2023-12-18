@@ -223,8 +223,11 @@ Group17.activeTimes = 4000, 4000
 Group17.polygonFile = map_creation_scripts/map_files/map8_polygon2.wkt
 
 
-Report.nrofReports = 1
+Report.nrofReports = 4
 Report.report1 = FlightLengthReport
+Report.report2 = EventLogReport
+Report.report3 = NodeDensityReport
+Report.report4 = AdjacencyGraphvizReport
 
 Report.reportDir = reports
 

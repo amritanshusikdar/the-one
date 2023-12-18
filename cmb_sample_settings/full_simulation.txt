@@ -184,8 +184,8 @@ Group13.nrofInterfaces = 1
 Group13.interface1 = trainInterface
 Group13.router = CustomAttractingRouter
 #Group13.routerOffsetTime = 500
-#Group13.routerPeriod = 1500
-#Group13.numberOfSits = 100
+#Group13.routerPeriod = 1500    # this could be changed for upscaling
+Group13.numberOfSits = 100  # this could be changed for upscaling
 
 Group14.groupID = coffee
 Group14.nrofHosts = 1
@@ -195,7 +195,7 @@ Group14.nrofInterfaces = 1
 Group14.interface1 = coffeeInterface
 Group14.router = CustomAttractingRouter
 #Group14.routerOffsetTime = 500
-#Group14.routerPeriod = 1500
+#Group14.routerPeriod = 1500    # this could be changed for upscaling
 
 Group15.groupID = polygon
 Group15.nrofHosts = 30
@@ -222,8 +222,11 @@ Group17.activeTimes = 6000, 6000
 Group17.polygonFile = map_creation_scripts/map_files/map8_polygon2.wkt
 
 
-Report.nrofReports = 1
+Report.nrofReports = 4
 Report.report1 = FlightLengthReport
+Report.report2 = EventLogReport
+Report.report3 = NodeDensityReport
+Report.report4 = AdjacencyGraphvizReport
 
 Report.reportDir = reports
 

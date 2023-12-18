@@ -84,7 +84,7 @@ public class CustomAttractingRouter extends MessageRouter {
 				sendMessage(noPlacesMessage, from);
 			}
 			else {
-				String noPlacesMessage = "places remaining";
+				String noPlacesMessage = sitPlacesRemaining + " places remaining";
 				addToMessages(new Message(this.getHost(), from, noPlacesMessage, noPlacesMessage.length()), true);
 				sendMessage(noPlacesMessage, from);
 				this.sitPlacesRemaining--;

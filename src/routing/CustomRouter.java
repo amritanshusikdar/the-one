@@ -86,7 +86,7 @@ public class CustomRouter extends MessageRouter {
 			this.getHost().setTargetCoords(new Coord(0,0));
 			this.getHost().setDestinationAlreadySet(false);
 		}
-		else if (groupId.equals("train") && m.toString().equals("places remaining")) {
+		else if (groupId.equals("train") && m.toString().contains("places remaining")) {
 			this.getHost().setTrainFull(false);
 			this.getHost().setIsGone(true);
 		}

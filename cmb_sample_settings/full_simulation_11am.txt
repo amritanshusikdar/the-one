@@ -185,7 +185,7 @@ Group13.nrofInterfaces = 1
 Group13.interface1 = trainInterface
 Group13.router = CustomAttractingRouter
 Group13.routerOffsetTime = 120
-Group13.routerPeriod = 600
+Group13.routerPeriod = 600      # 10mins: changing this will change the intervals
 Group13.numberOfSits = 17
 
 Group14.groupID = coffee
@@ -196,7 +196,7 @@ Group14.nrofInterfaces = 1
 Group14.interface1 = coffeeInterface
 Group14.router = CustomAttractingRouter
 Group14.routerOffsetTime = 120
-Group14.routerPeriod = 600
+Group14.routerPeriod = 600    # 10mins: changing this will change the intervals
 
 Group15.groupID = outside
 Group15.nrofHosts = 15

@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="479a11b9-62d6-4cd7-9fd6-9130f5bc36f2" name="Changes" comment="testing">
-      <change afterPath="$PROJECT_DIR$/data/map.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmb_sample_settings/nu_mod_mov_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmb_sample_settings/nu_mod_mov_test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/SimMenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/SimMenuBar.java" afterDir="false" />
-    </list>
+    <list default="true" id="479a11b9-62d6-4cd7-9fd6-9130f5bc36f2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,6 +107,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
